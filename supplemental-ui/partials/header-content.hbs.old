@@ -1,0 +1,104 @@
+
+<header id="header">
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const kPass = urlParams.get('KUBEADMIN_PASSWORD');
+      const subDomain = urlParams.get('ROUTE_SUBDOMAIN');
+      const masterUrl = urlParams.get('MASTER_URL');
+      const bastion = urlParams.get('BASTION_FQDN');
+      const sshUser = urlParams.get('SSH_USERNAME');
+      const nodeName = urlParams.get('NODE_INTERNAL_FQDN');
+      if (kPass && subDomain && masterUrl && bastion && sshUser && nodeName) {
+        showValues( kPass, subDomain, masterUrl, bastion, sshUser, nodeName );
+      }
+      else {
+        showValuesForm( kPass, subDomain, masterUrl, bastion, sshUser, nodeName );
+      }
+    } );
+
+
+    function showValues( kPass, subDomain, masterUrl, bastion, sshUser, nodeName ) {
+      document.getElementById('navbar-form-empty').style.display = "none";
+      document.getElementById('navbar-form-filled').style.display = "flex";
+      document.getElementById('kPass').textContent = kPass;
+      document.getElementById('subDomain').textContent = subDomain;
+      document.getElementById('masterUrl').textContent = masterUrl;
+      document.getElementById('bastion').textContent = bastion;
+      document.getElementById('sshUser').textContent = sshUser;
+      document.getElementById('nodeName').textContent = nodeName;
+ 
+    }
+
+    function showValuesForm(  kPass, subDomain, masterUrl, bastion, sshUser, nodeName  ) {
+      document.getElementById('navbar-form-empty').style.display = "flex";
+      document.getElementById('navbar-form-filled').style.display = "none";
+      document.getElementById('kPass').value = kPass;
+      document.getElementById('subDomain').value = subDomain;
+      document.getElementById('masterUrl').value = masterUrl;
+      document.getElementById('bastion').value = bastion;
+      document.getElementById('sshUser').value = sshUser;
+      document.getElementById('nodeName').value = nodeName;
+    }
+
+    function goWithValues() {
+      kPass = document.getElementById('kPass');
+      subDomain = document.getElementById('subDomain');
+      masterUrl = document.getElementById('masterUrl');
+      bastion = document.getElementById('bastion');
+      sshUser = document.getElementById('sshUser');
+      nodeName = document.getElementById('nodeName');
+
+      window.location.search = ('&KUBEADMIN_PASSWORD=' + kPass.value + '&ROUTE_SUBDOMAIN=' + 
+          subDomain.value + '&MASTER_URL=' + masterUrl.value +  
+          '&BASTION_FQDN=' + bastion.value + '&SSH_USERNAME=' + sshUser + '&NODE_INTERNAL_FQDN=' + nodeName.value);
+    }
+
+  </script>
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.redhat.com/en/technologies/cloud-computing/openshift" target="_blank"><img
+          src="{{uiRootPath}}/img/Logo-Red_Hat-OpenShift_4-A-Reverse-RGB.png" height="40px" alt="Red Hat OpenShift"></a>
+      <a class="navbar-item" href="{{{or site.url (or siteRootUrl siteRootPath)}}}" style="color: white;"><h3>{{site.title}}</h3></a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item" id="navbar-form-empty">
+          <span class="navbar-text" style="margin-left: 1rem;">Environment</span>
+          <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">&nbsp;<i style="color: orange;"
+              class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+
+          <form action="javascript:void(0);" onsubmit="goWithValues();">
+            <div class="navbar-item" id="navbar-form-project-filled" style="display: none;">
+              <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">|</span>
+            </div>
+            <input size="20" id="kPass" type="text" placeholder="Kubeadmin password"><br>
+            <input size="20" id="subDomain" type="text" placeholder="Route subdomain"><br>
+            <input size="20" id="masterUrl" type="text" placeholder="Master URL"><br>
+            <input size="20" id="bastion" type="text" placeholder="Bastion hostname"><br>
+            <input size="20" id="sshUser" type="text" placeholder="SSH username"><br>
+            <input size="20" id="nodeName" type="text" placeholder="Node name"><br>
+          </form>
+        </div>
+
+        <div class="navbar-item" id="navbar-form-filled" style="display: none;">
+          <span class="navbar-text" style="margin-left: 1rem;">Environment</span>
+          <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">|</span>
+          <span class="navbar-text" id="kPass"></span><br>
+          <span class="navbar-text" id="subDomain"></span><br>
+          <span class="navbar-text" id="masterUrl"></span><br>
+          <span class="navbar-text" id="bastion"></span><br>
+          <span class="navbar-text" id="sshUser"></span><br>
+          <span class="navbar-text" id="nodeName"></span><br>
+          <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">&nbsp;<i onclick="recycle();" style="color: green;" class="fa fa-recycle" aria-hidden="true"></i></span>
+        </div>
+
+    </div>
+  </nav>
+</header>

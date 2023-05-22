@@ -1,20 +1,22 @@
-= Welcome to Template Tutorial
+= Welcome to the MAD Ops Workshop Lab Guide
 :page-layout: home
 :!sectids:
 
 [.text-center.strong]
-== Publish Services to Kubernetes
+== Getting Started
 
-A Kubernetes tutorial to show how you can deploy a Java service to a Kubernetes cluster as it was a child game.
+Checking the lab environment is running, logging and setting up the lab Prerequisites
 
-[.tiles.browse]
-== Browse modules
+* xref:setup.adoc[Getting Started]
 
-[.tile]
-.xref:01-setup.adoc[Get Started]
-* xref:01-setup.adoc#minikube[Minikube]
+== Operational Admin
 
-[.tile]
-.xref:02-deploy.adoc[Deploying]
-* xref:02-deploy.adoc#package[Package the Application]
-* xref:02-deploy.adoc#deploy[Deploy the Application]
+* xref:environment.adoc[Operational Admin]
+
+== Advanced Cluster Management
+
+* xref:acm-multicluster.adoc[ACM]
+
+== Advanced Cluster Security
+
+* xref:acs-vulnerability.adoc[ACS]

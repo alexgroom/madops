@@ -9,7 +9,7 @@ gh-pages/
 dependency-reduced-pom.xml
 svm.jar
 
-### STS ###
+=== STS ===
 .apt_generated
 .classpath
 .factorypath
@@ -17,13 +17,13 @@ svm.jar
 .settings
 .springBeans
 
-### IntelliJ IDEA ###
+=== IntelliJ IDEA ===
 .idea
 *.iws
 *.iml
 *.ipr
 
-### NetBeans ###
+=== NetBeans ===
 nbproject/private/
 build/
 nbbuild/

@@ -1,0 +1,87 @@
+= Environment Overview
+
+You will be interacting with an OpenShift 4 cluster.
+
+The basics of the OpenShift 4 installation have been completed in advance.
+The OpenShift cluster is essentially set to all defaults and looks like the
+following:
+
+* 3 master nodes
+* 2 or 3 worker nodes
+* 1 bastion host
+
+== Conventions
+You will see various code and command blocks throughout these exercises. 
+
+These blocks need to be copied to the terminal and exceuted.
+
+=== Cluster Admin Authentication
+
+Privileges in OpenShift are controlled through a set of roles, policies, and
+bindings which you will learn more about in one of the exercises in this
+workshop.
+
+As a quick example, you can execute the following to learn more about what a
+`Role` is:
+
+[source,bash,role="execute"]
+----
+oc explain Role
+----
+
+Inspect how `ClusterRole` differs:
+
+[source,bash,role="execute"]
+----
+oc explain ClusterRole
+----
+
+You can execute the following to learn more about `RoleBinding`:
+
+[source,bash,role="execute"]
+----
+oc explain RoleBinding
+----
+
+Inspect how `ClusterRoleBinding` differs:
+
+[source,bash,role="execute"]
+----
+oc explain ClusterRoleBinding
+----
+
+You can always use `oc explain [RESOURCE]` to get more explanation about what
+various objects are.
+
+Let's look at PolicyRules defined in the `ClusterRole` _cluster-admin_:
+
+[source,bash,role="execute"]
+----
+oc get clusterrole cluster-admin -o yaml
+----
+
+Notice how under rules, an account with the _cluster-admin_ role has
+wildcard `*` access to all `resources` and `verbs` of an apiGroup and all
+`verbs` in `nonResourceURLs`.
+
+`verbs` are actions that you perform against resources. Things like `delete`
+and `get` are `verbs` in OpenShift.
+
+To learn more about certain verbs, run `oc [verb] --help`
+
+Let's learn more about the `verb` _whoami_:
+
+[source,bash,role="execute"]
+----
+oc whoami --help
+----
+
+We will now run `oc whoami` to see what account you will be using today:
+
+[source,bash,role="execute"]
+----
+oc whoami
+----
+
+As a cluster-admin throughout the exercises, you will be able to do anything
+with the cluster as you have noted earlier, so follow instructions carefully.

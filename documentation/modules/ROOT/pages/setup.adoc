@@ -1,0 +1,95 @@
+
+= Lab Setup
+
+In this section, we'll take a look at the setup of this OpenShift cluster we're using for today's lab. 
+
+
+== Lab Parameters
+
+The lab parameters can provide either via URL parameters or manually copied into the lab guide below.
+
+All these values need to be successfully set for the lab guide to personalise for your environment. 
+Please use the lab introduction screen to find any missing information:
+
+image::rhpd-starter-screen.png[RHPD Starter screen]
+
+* OpenShift Console: *%MASTER_URL%*
+* Kubeadmin password: *%KUBEADMIN_PASSWORD%*
+
+++++
+<div>
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const kPass = urlParams.get('KUBEADMIN_PASSWORD');
+      const subDomain = urlParams.get('ROUTE_SUBDOMAIN');
+      const masterUrl = urlParams.get('MASTER_URL');
+      if (kPass && subDomain && masterUrl ) {
+        showValues( kPass, masterUrl );
+      }
+      else {
+        showValuesForm( kPass, masterUrl );
+      }
+    } );
+
+
+    function showValues( kPass, masterUrl ) {
+      document.getElementById('foobar-form-empty').style.display = "none";
+      document.getElementById('foobar-form-filled').style.display = "flex";
+      document.getElementById('kPass').value = kPass;
+      document.getElementById('masterUrl').value = masterUrl;
+ 
+    }
+
+    function showValuesForm(  kPass, masterUrl ) {
+      document.getElementById('foobar-form-empty').style.display = "flex";
+      document.getElementById('foobar-form-filled').style.display = "none";
+      document.getElementById('kPass').value = kPass;
+      document.getElementById('masterUrl').value = masterUrl;
+    }
+
+    function getSubdomain(masterUrl)
+    {
+        pos = masterUrl.indexOf(".apps.");
+        if (pos == -1)
+        {
+            return masterUrl;
+        }
+        else
+        {
+            // delivers a URL fragment of the form apps.xxx.yyy.com
+            return masterUrl.substring(pos+1);
+        }
+    }
+
+    function goWithValues() {
+      kPass = document.getElementById('kPass');
+      masterUrl = document.getElementById('masterUrl');
+      subDomain = getSubdomain(masterUrl.value.trim());
+
+      window.location.search = ('&KUBEADMIN_PASSWORD=' + kPass.value.trim() + '&ROUTE_SUBDOMAIN=' + 
+          subDomain + '&MASTER_URL=' + masterUrl.value.trim());
+    }
+
+  </script>
+
+    <div id="topbar-foo" class="foobar-menu">
+      <div class="foobar-item" id="foobar-form-empty">
+        <div><span class="foobar-text" style="margin-left: 1rem;"><h2>Set Lab Values</h2></span><br>
+        <span>
+        <form action="javascript:void(0);" onsubmit="goWithValues();">
+          OpenShift Console:<input size="50" id="masterUrl" type="text" placeholder="OpenShift Console URL" style="margin-left: 10px"><br>
+          Kubeadmin Password:<input size="30" id="kPass" type="text" placeholder="Kubeadmin password" style="margin-left: 10px"><br><br>
+          <input type="button" onclick="goWithValues()" value="Update Values" style="color: white; background: black; padding-top: 10px; padding-bottom: 10px; padding-right:20px; padding-left: 20px">      
+        </form>
+        </span>
+        </div>
+      </div>
+
+      <div class="foobar-item" id="foobar-form-filled" style="display: none;">
+      </div>
+
+    </div>
+</div>
+++++
+
