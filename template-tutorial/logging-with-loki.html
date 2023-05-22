@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Summary - OpenShift Logging :: MAD Ops Track</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/course-template/template-tutorial/logging-with-loki.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../_/css/site.css">
+<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
+          src="../_/img/header_logo.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" href="https://redhat-scholars.github.io/course-template">MAD Ops Track</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Books</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">CheatSheets</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">CheatSheet A</a>
+            <a class="navbar-item" href="#">CheatSheet B</a>
+            <a class="navbar-item" href="#">CheatSheet C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Upcoming Events</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Event A</a>
+            <a class="navbar-item" href="#">Event B</a>
+            <a class="navbar-item" href="#">Event C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Tutorial A</a>
+            <a class="navbar-item" href="#">Tutorial B</a>
+            <a class="navbar-item" href="#">Tutorial C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="template-tutorial" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html" class=" query-params-link">MAD Ops Track</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="setup.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="setup.html">Lab Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-getting-started.html">Logging in</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="environment.html">Operational Admin</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="environment.html">Environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="installation.html">Installation &amp; Verification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="app-mgmt-basics.html">Application Management Basics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="app-storage-basics.html">Storage Basics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="machinesets.html">Machinesets</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="infra-nodes.html">Infra Nodes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="logging.html">Logging</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ldap-groupsync.html">LDAP Sync</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#monitoring-basics">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="template-quota-limits.html">Templates Quotas and Limits</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="networking.html">Networking</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="disabling-project-self-provisioning.html">Project Self Provioning</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="clusterresourcequota.html">Cluster Quotas</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="taints-and-tolerations.html">Taints and Tolerations</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="acm-multicluster.html">Advanced Cluster Admin</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="acm-multicluster.html">Multicluster Admin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="acs-vulnerability.html">Advanced Cluster Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="acs-vulnerability.html">Vulnerability</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="acs-devsecops.html">DevSecOps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#gitops.adoc">GitOps</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">MAD Ops Track</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">MAD Ops Track</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">MAD Ops Track</a></li>
+    <li><a href="logging-with-loki.html">Summary - OpenShift Logging</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/alexgroom/madops/edit/master/documentation/modules/ROOT/pages/logging-with-loki.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Summary - OpenShift Logging</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>features within 4.12.</p>
+</div>
+<div class="paragraph">
+<p>An extremely important function of OpenShift is collecting and aggregating
+logs from the environments and the application pods it is running.</p>
+</div>
+<div class="paragraph">
+<p>The cluster logging components are based upon Vector and Loki. Vector is a high-performance observability data pipeline that allows users to configure "log forwarders" to direct Openshift logs to different log collectors.  Loki is log storage built around the idea of only indexing metadata about your logs with labels (just like Prometheus labels). Log data itself is then compressed and stored in chunks in object stores, or even locally on the filesystem.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>More information may be found on the official
+<a href="https://docs.openshift.com/container-platform/4.12/logging/cluster-logging.html">OpenShift
+documentation site</a></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This exercise is done almost entirely using the OpenShift web console. All of
+the interactions with the web console are effectively creating or
+manipulating API objects in the background. It is possible to fully automate
+the process and/or achieve the same results using the command line interface (CLI)
+or other tools, but these methods are not covered in the exercise or documentation
+at this time.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploying_openshift_logging"><a class="anchor" href="#_deploying_openshift_logging"></a>Deploying OpenShift Logging</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>OpenShift Container Platform cluster logging is designed to be used with the
+default configuration, which is tuned for small to medium sized OpenShift
+Container Platform clusters. The installation instructions that follow
+include a sample Cluster Logging Custom Resource (CR), which you can use to
+create a cluster logging instance and configure your cluster logging
+deployment.</p>
+</div>
+<div class="paragraph">
+<p>If you want to use the default cluster logging install, you can use
+the sample CR directly. If you prefer to customize your deployment,
+however, make changes to the sample CR as needed.</p>
+</div>
+<div class="paragraph">
+<p>The following describes the configurations you can make when
+installing your cluster logging instance or modify after installation. See the
+Configuring sections for more information on working with each component,
+including modifications you can make outside of the Cluster Logging Custom
+Resource.</p>
+</div>
+<div class="paragraph">
+<p>To enable metrics service discovery, add the following namespace label
+openshift.io/cluster-monitoring: "true".</p>
+</div>
+<div class="paragraph">
+<p>The namespace is represented in yaml format as:</p>
+</div>
+<div class="listingblock">
+<div class="title">openshift_logging_namespace.yaml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
+kind: Namespace
+metadata:
+  name: openshift-logging
+  annotations:
+    openshift.io/node-selector: ""
+  labels:
+    openshift.io/cluster-logging: "true"
+    openshift.io/cluster-monitoring: "true"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>So <code>create</code> a file with the above YAML called 'openshift_logging_namespace.yaml'</p>
+</div>
+<div class="paragraph">
+<p>Use that file to create the namespace by running the following command:</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc create -f openshift_logging_namespace.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next, verify that the namespace has been created with this command:</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get ns openshift-logging</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should see the following output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">NAME                STATUS   AGE
+openshift-logging   Active   11s</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_install_the_loki_and_cluster_logging_operators_in_the_cluster"><a class="anchor" href="#_install_the_loki_and_cluster_logging_operators_in_the_cluster"></a>Install the <code>Loki</code> and  <code>Cluster Logging</code> Operators in the cluster</h3>
+<div class="paragraph">
+<p>In order to install and configure the logging stack into the cluster,
+additional operators need to be installed. we&#8217;ll cover below how these can be
+installed from the <code>Operator Hub</code> from within the cluster via the GUI.</p>
+</div>
+<div class="paragraph">
+<p>When using operators in OpenShift, however, it is firstly important to understand
+the basics of some of the underlying principles that make up the Operators.
+<code>CustomResourceDefinion (CRD)</code> and <code>CustomResource (CR)</code> are two Kubernetes
+objects. <code>CRDs</code> are generic pre-defined
+structures of data. The operator understands how to apply the data that is
+defined by the <code>CRD</code>. In terms of programming, <code>CRDs</code> can be thought as being
+similar to a class. A <code>CustomResource (CR)</code> is an actual implementation of the
+<code>CRD</code>, where the structured data has actual values. These values are what the
+operator will use when configuring its service. Again, in programming terms,
+<code>CRs</code> would be similar to an instantiated object of the class.</p>
+</div>
+<div class="paragraph">
+<p>The general pattern for using Operators is to firstly, install the Operator, which
+will create the necessary <code>CRDs</code>. After the <code>CRDs</code> have been created, we can
+create the <code>CR</code> which will tell the operator how to act, what to install,
+and/or what to configure. For installing <code>openshift-logging</code>, we will follow
+this pattern.</p>
+</div>
+<div class="paragraph">
+<p>To begin, use the following link to log-in
+to the <code>OpenShift Cluster&#8217;s GUI</code>. (note: do not use the built-in
+console for these steps)
+<code>%MASTER_URL%</code>
+then follow these steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install the <code>Cluster Logging Operator</code>:</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>Cluster Logging</code> operator needs to be installed in the
+<code>openshift-logging</code> namespace. You can check that the <code>openshift-logging</code>
+namespace was created from the previous steps</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>In the OpenShift console, click <code>Operators</code> → <code>OperatorHub</code>.</p>
+</li>
+<li>
+<p>Type <code>OpenShift Logging</code> in the search box and click the  <code>Red Hat OpenShift Logging</code> card from the list of available Operators (choose the newest version you can see, which should be '5.6.1'), and click <code>Install</code>.</p>
+</li>
+<li>
+<p>On the <code>Install Operator</code> page, <strong>select Update Channel <code>stable</code></strong>. Under <code>Installation Mode</code> ensure that <code>A specific namespace on the cluster</code> is selected, and choose
+<code>Operator recommended Namespace: openshift-logging</code> under <code>Installed Namespace</code>. Leave all other defaults
+ unchanged and then click <code>Install</code>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Install the <code>Loki Operator</code>:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>In the OpenShift console, click <code>Operators</code> → <code>OperatorHub</code>.</p>
+</li>
+<li>
+<p>Type <code>Loki Operator</code> in the search field and click the <code>Loki Operator</code> card from the list of available Operators (choose the newest version you can see, which should be '5.6.1'), and then click <code>Install</code>.</p>
+</li>
+<li>
+<p>On the <code>Create Operator Subscription</code> page, select <strong>Update Channel <code>stable</code></strong>. You should also select <code>'Enable Operator recommended cluster monitoring on this Namespace'</code>. Leave all other defaults
+and click <code>Install</code>.</p>
+<div class="paragraph">
+<p>This now makes the Operator available to all users and projects that use this
+OpenShift Container Platform cluster.</p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Verify the operator installations:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Switch to the <code>Operators</code> → <code>Installed Operators</code> page.</p>
+</li>
+<li>
+<p>Make sure the <code>openshift-logging</code> project is selected.</p>
+</li>
+<li>
+<p>In the <em>Status</em> column you should see green checks with either
+<code>InstallSucceeded</code> or <code>Copied</code> and the text <em>Up to date</em>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>During installation an operator might display a <code>Failed</code> status. If the
+operator then installs with an <code>InstallSucceeded</code> message, you can safely
+ignore the <code>Failed</code> message.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Troubleshooting (optional/if needed)</p>
+<div class="paragraph">
+<p>If either operator does not appear as installed, follow these steps to troubleshoot further:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>On the Copied tab of the <code>Installed Operators page</code>, if an operator shows a
+Status of Copied, this indicates the installation is in process and is
+expected behavior.</p>
+</li>
+<li>
+<p>Switch to the <code>Catalog</code> → <code>Operator Management</code> page and inspect the <code>Operator
+Subscriptions</code> and <code>Install Plans</code> tabs for any failure or errors under Status.</p>
+</li>
+<li>
+<p>Switch to the <code>Workloads</code> → <code>Pods</code> page and check the logs in any Pods in the
+<code>openshift-logging</code> and <code>openshift-operators</code> projects that are reporting issues.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_a_bucket_with_aws"><a class="anchor" href="#_configuring_a_bucket_with_aws"></a>Configuring a bucket with AWS</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>You should have received some <code>AWS credentials</code>. You can remind yourself of these
+on the screen from which you orignally accessed this workshop. You will need to use
+these credentials throughout the next few steps.</p>
+</li>
+<li>
+<p>Firstly use the <code>'aws configure'</code> command to set up your <code>s3 (storage) bucket</code>.</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">aws configure</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Fill out the <code>AWS Access Key ID</code> and the <code>AWS Secret Access Key</code>
+from the credentials on the page mentioned above. Use
+<code>us-east-1</code> as region and <code>json</code> as default output.
+This is an example below:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>AWS Access Key ID [None]: w3EDfSERUiLSAEXAMPLE (PLEASE REPLACE)
+AWS Secret Access Key [None]: mshdyShDTYKWEywajsqpshdNSUWJDA+1+REXAMPLE (PLEASE REPLACE)
+Default region name [None]: us-east-1
+Default output format [None]: json</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Check the <code>contents</code> of the aws folder:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ls .aws</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>you should see two folders <code>'config'</code> and <code>'credentials'</code>. This will be the
+location in which we will put the <code>s3 bucket config</code>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="4">
+<li>
+<p>Check that the instance was successful and that the information is correct:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat .aws/credentials</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should see that all the information is correct and matches
+your config. This is an example output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[default]
+aws_access_key_id = w3EDfSERUiLSAEXAMPLE
+aws_secret_access_key = mshdyShDTYKWEywajsqpshdNSUWJDA+1+REXAMPLE</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="5">
+<li>
+<p>Now it is time to <code>create</code> the bucket with the information
+that you have provided. You can choose whatever bucket name you
+would like. Pick a name you will be able to recognize later.
+In this case we have named it pg2nw which is the <code>GUID</code> of the console.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If you want to use your <code>GUID</code> as your <code>bucket name</code> please do the following:</p>
+</div>
+<div class="paragraph">
+<p>to export we do the following:</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export GUID=`hostname | cut -d. -f2`</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>to view the GUID we do:</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">echo $GUID</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output of this command is your bucket name.</p>
+</div>
+<div class="paragraph">
+<p>Next, run the following command to <code>create</code> the bucket replace &lt;pg2nw&gt; with your own <code>GUID</code></p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">aws --profile default s3api create-bucket --bucket &lt;pg2nw&gt; --region us-east-1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is creating an <code>aws bucket</code> from the <code>profile</code> called
+<code>default</code> which we set up earlier. Please remember your
+bucket name as we will be using this later.</p>
+</div>
+<div class="paragraph">
+<p>You may get an error if you make the bucket name too generic. If you see something like this <code>error</code>, try another name:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>An error occurred (BucketAlreadyExists) when calling
+the CreateBucket operation: The requested bucket name
+is not available. The bucket namespace is shared by
+all users of the system. Please select a different
+name and try again.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You will know you have been successful when you see this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>{
+    "Location": "/pg2nw"
+}</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creating_a_secret_within_openshift"><a class="anchor" href="#_creating_a_secret_within_openshift"></a>Creating a Secret within Openshift</h3>
+<div class="paragraph">
+<p>Next you need to <code>configure</code> your secrets. This <code>secret</code> will store the access credentials
+  for the <code>s3 bucket</code> we just created. This will later be used by
+  the <code>LokiStack</code> to store <code>logging data</code>.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Navigate to the Console and click <code>Workloads</code> &#8594; <code>Secrets</code></p>
+</li>
+<li>
+<p>Next, select <code>Create</code> and <code>from YAML</code></p>
+</li>
+<li>
+<p>Remove the current YAML and replace it with this YAML (Make sure to change to match your AWS creds):</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
+kind: Secret
+metadata:
+  name: lokistack-dev-s3
+  namespace: openshift-logging
+stringData:
+  access_key_id: w3EDfSERUiLSAEXAMPLE (Replace with your aws creds)
+  access_key_secret: mshdyShDTYKWEywajsqpshdNSUWJDA+1+REXAMPLE (Replace with your aws creds)
+  bucketnames: replace with the name of your bucket (we called it pg2nw in our example)
+  endpoint: https://s3.us-east-1.amazonaws.com/
+  region: us-east-1</code></pre>
+</div>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Once you are happy, click <code>Create</code>.</p>
+</li>
+<li>
+<p>Check that the <code>lokistack-dev-s3 secret</code> has been created by running the following command:</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get secrets -n openshift-logging</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre> You should see something like this:
+ [lab-user@bastion ~]$ kubectl get secrets -n openshift-logging
+NAME                                       TYPE                                  DATA   AGE
+builder-dockercfg-wcksv                    kubernetes.io/dockercfg               1      7m51s
+builder-token-vszlq                        kubernetes.io/service-account-token   4      7m51s
+cluster-logging-operator-dockercfg-xc8hq   kubernetes.io/dockercfg               1      6m41s
+cluster-logging-operator-token-tcb2h       kubernetes.io/service-account-token   4      6m41s
+default-dockercfg-7vhqw                    kubernetes.io/dockercfg               1      7m51s
+default-token-khmnw                        kubernetes.io/service-account-token   4      7m51s
+deployer-dockercfg-5kqr7                   kubernetes.io/dockercfg               1      7m51s
+deployer-token-65zmx                       kubernetes.io/service-account-token   4      7m51s
+lokistack-dev-s3                           Opaque                                5      57s</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creating_the_lokistack"><a class="anchor" href="#_creating_the_lokistack"></a>Creating the LokiStack</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Now, head on over to the <code>console</code> and go to <code>Operators</code> and <code>Installed Operators</code>.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Select the <code>Loki Operator</code></p>
+</li>
+<li>
+<p>On the first page under <code>Provided APIs</code> and <code>LokiStack</code> select <code>Create instance</code>.</p>
+</li>
+<li>
+<p>Switch to <code>YAML view</code> option</p>
+</li>
+<li>
+<p>Next you should remove the current YAML and replace it with this YAML:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: loki.grafana.com/v1
+kind: LokiStack
+metadata:
+  name: lokistack-dev
+  namespace: openshift-logging
+spec:
+  size: 1x.extra-small
+  storage:
+    schemas:
+    - version: v12
+      effectiveDate: "2022-06-01"
+    secret:
+      name: lokistack-dev-s3
+      type: s3
+  storageClassName: gp2-csi
+  tenants:
+    mode: openshift-logging</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This YAML will create a useable <code>LokiStack</code>. As you can see within this <code>YAML</code>
+it uses the secret file we created earlier.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Then click <code>Create</code>.</p>
+</li>
+<li>
+<p>Navigate to the <code>LokiStack</code> tab and click on <code>lokistack-dev</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>It may take up to a minute to be up and running but it should eventually look like this:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/LokiStack.png" alt="LokiStack">
+</div>
+</div>
+<div class="paragraph">
+<p>_Figure 1: LokiStack<br></p>
+</div>
+<div class="paragraph">
+<p>We haven&#8217;t set a ruler so you should see <code>The field components.ruler is invalid.</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create_the_logging_customresource_cr_instance"><a class="anchor" href="#_create_the_logging_customresource_cr_instance"></a>Create the Logging <code>CustomResource (CR)</code> instance</h3>
+<div class="paragraph">
+<p>Now that we have almost everything set up we need to create our Logging
+<code>CustomResource (CR)</code> instance  This will define how we want to install
+and configure logging.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Head over to the <code>console</code> and go to <code>Operators</code> and <code>Installed Operators</code>.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Select the <code>Red Hat OpenShift Logging</code>.</p>
+</li>
+<li>
+<p>On the first page under <code>Provided APIs</code> and <code>Cluster Logging</code>, select <code>Create instance</code>.</p>
+</li>
+<li>
+<p>Next, remove the current YAML and replace it with this YAML:</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: logging.openshift.io/v1
+kind: ClusterLogging
+metadata:
+  name: instance
+  namespace: openshift-logging
+spec:
+  logStore:
+    type: lokistack
+    lokistack:
+      name: lokistack-dev
+  collection:
+    logs:
+      type: vector</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will create an instance of <code>Cluster logging</code> within the namespace <code>openshift-logging</code>.
+It will store the log in <code>LokiStack</code> and the type of log it will store is <code>vector</code>.</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Finally, click <code>Create</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_verify_the_logging_install"><a class="anchor" href="#_verify_the_logging_install"></a>Verify the Logging install</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that Logging has been created, let&#8217;s verify that things are working.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Switch to the <code>Workloads</code> → <code>Pods</code> page.</p>
+</li>
+<li>
+<p>Select the <code>openshift-logging</code> project.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>You should see pods for <code>cluster logging</code> (the operator itself),
+the <code>collectors</code>, <code>logging-view-plugin</code>, and a variety of <code>lokistack</code> pods</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can verify from the command line by using the following command:</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get pods -n openshift-logging</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which will eventually show you something like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>cluster-logging-operator-6d94c695db-lpjgd       1/1     Running   0          89m
+collector-5z8ll                                 2/2     Running   0          80m
+collector-bdjnv                                 2/2     Running   0          79m
+collector-bwxdr                                 2/2     Running   0          79m
+collector-m75c7                                 2/2     Running   0          80m
+collector-snqp5                                 2/2     Running   0          80m
+collector-spdr2                                 2/2     Running   0          79m
+logging-view-plugin-69c86cb9c9-4qlcj            1/1     Running   0          80m
+lokistack-dev-compactor-0                       1/1     Running   0          81m
+lokistack-dev-distributor-56cf98db97-vvpbw      1/1     Running   0          81m
+lokistack-dev-gateway-757dd67c8c-gv9s5          2/2     Running   0          81m
+lokistack-dev-gateway-757dd67c8c-rcfb2          2/2     Running   0          81m
+lokistack-dev-index-gateway-0                   1/1     Running   0          81m
+lokistack-dev-ingester-0                        1/1     Running   0          81m
+lokistack-dev-querier-5854c87fcb-hqltx          1/1     Running   0          81m
+lokistack-dev-query-frontend-855b5684f7-846vb   1/1     Running   0          81m</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should see a box pop up in the top right corner after about
+30 seconds to a minute. It will say <code>"Web console update is available"</code>
+and will prompt you to refresh your browser. Go ahead and do that;
+this change will now allow you to access logs.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/Loki_refresh.png" alt="Loki refresh">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_observing_the_logs"><a class="anchor" href="#_observing_the_logs"></a>Observing The Logs</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>At this Point you can go to <code>Observe</code> &#8594; <code>Logs</code> on the left hand menu.</p>
+</li>
+<li>
+<p>Once you are inside you will notice a menu which is currently
+set to <code>Applications</code>. change this instead to <code>infrastructure</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>You should now see all the <code>logs</code> for <code>Infrastructure</code>. The logs are split
+into 3 sections: <code>application</code>, <code>infrastructure</code> and <code>audits</code>. We will set
+up audits and the <code>log forwarder</code> in the next part, but lets have a
+look through the different parts of this.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/appinfraaudit.png" alt="appinfraaudit">
+</div>
+</div>
+<div class="paragraph">
+<p>As we can see in the graphic below, you can filter by <code>Content</code>, <code>Namespaces</code>, <code>Pods</code>, and <code>Containers</code>.
+This can be useful to narrow down searches when looking for something more specific.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/filterlogs.png" alt="filterlogs">
+</div>
+</div>
+<div class="paragraph">
+<p>You can further specify the logs you are looking for by using the other
+drop down menu for <code>Severity</code>. This menu breaks the logs down into <code>critical</code>,
+<code>error</code>, <code>warning</code>, <code>debug</code>, <code>info</code>, <code>trace</code>, and <code>unknown</code> logging categories.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/severity.png" alt="severity">
+</div>
+</div>
+<div class="paragraph">
+<p>The final piece of this is the <code>histogram</code>. This gives the user a more visual look into the logs.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/histogram.png" alt="histogram">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setting_up_log_forwarding"><a class="anchor" href="#_setting_up_log_forwarding"></a>Setting up Log forwarding</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To have access to <code>audit logs</code>, we need to set up the <code>log
+forwarder</code>. We will start by telling the <code>collectors</code> to
+forward the <code>audit logs</code> through the cluster.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use the navigation bar on the left to access
+<code>Operators</code> &#8594; <code>Installed Operators</code></p>
+</li>
+<li>
+<p>Now select <code>Red Hat OpenShift Logging</code></p>
+</li>
+<li>
+<p>Under <code>Provided APIs</code> and <code>Cluster Log Forwarder</code>
+you should see a button named <code>Create instance</code>.
+Go ahead and select that.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Replace the current displayed YAML with the new YAML:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: logging.openshift.io/v1
+kind: ClusterLogForwarder
+metadata:
+  name: instance
+  namespace: openshift-logging
+spec:
+  pipelines:
+  - name: all-to-default
+    inputRefs:
+    - infrastructure
+    - application
+    - audit
+    outputRefs:
+    - default</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="4">
+<li>
+<p>Next, click <code>create</code>.</p>
+</li>
+<li>
+<p>You should noe be able to go back to <code>Observe</code> &#8594; <code>Logs</code> and select <code>Audit</code> from the menu.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Congratulations, you have now completed the logging section!</p>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

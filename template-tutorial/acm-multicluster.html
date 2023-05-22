@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Advanced Cluster Management for Kubernetes - RHACM :: MAD Ops Track</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/course-template/template-tutorial/acm-multicluster.html">
+    <link rel="prev" href="taints-and-tolerations.html">
+    <link rel="next" href="acs-vulnerability.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../_/css/site.css">
+<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
+          src="../_/img/header_logo.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" href="https://redhat-scholars.github.io/course-template">MAD Ops Track</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Books</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">CheatSheets</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">CheatSheet A</a>
+            <a class="navbar-item" href="#">CheatSheet B</a>
+            <a class="navbar-item" href="#">CheatSheet C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Upcoming Events</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Event A</a>
+            <a class="navbar-item" href="#">Event B</a>
+            <a class="navbar-item" href="#">Event C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Tutorial A</a>
+            <a class="navbar-item" href="#">Tutorial B</a>
+            <a class="navbar-item" href="#">Tutorial C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="template-tutorial" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html" class=" query-params-link">MAD Ops Track</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="setup.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="setup.html">Lab Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-getting-started.html">Logging in</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="environment.html">Operational Admin</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="environment.html">Environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="installation.html">Installation &amp; Verification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="app-mgmt-basics.html">Application Management Basics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="app-storage-basics.html">Storage Basics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="machinesets.html">Machinesets</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="infra-nodes.html">Infra Nodes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="logging.html">Logging</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ldap-groupsync.html">LDAP Sync</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#monitoring-basics">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="template-quota-limits.html">Templates Quotas and Limits</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="networking.html">Networking</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="disabling-project-self-provisioning.html">Project Self Provioning</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="clusterresourcequota.html">Cluster Quotas</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="taints-and-tolerations.html">Taints and Tolerations</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="acm-multicluster.html">Advanced Cluster Admin</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="acm-multicluster.html">Multicluster Admin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="acs-vulnerability.html">Advanced Cluster Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="acs-vulnerability.html">Vulnerability</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="acs-devsecops.html">DevSecOps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#gitops.adoc">GitOps</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">MAD Ops Track</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">MAD Ops Track</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">MAD Ops Track</a></li>
+    <li><a href="acm-multicluster.html">Advanced Cluster Admin</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/alexgroom/madops/edit/master/documentation/modules/ROOT/pages/acm-multicluster.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Advanced Cluster Management for Kubernetes - RHACM</h1>
+<div class="sect1">
+<h2 id="_working_with_clusters_and_cluster_lifecycle"><a class="anchor" href="#_working_with_clusters_and_cluster_lifecycle"></a>Working with Clusters and Cluster Lifecycle</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>At a high level Cluster Lifecycle management is about creating, upgrading, and destroying and importing clusters in a multi cloud environment.</p>
+</div>
+<div class="paragraph">
+<p>In the demo console where you have all the credentials, you will find the <strong>ACM Hub URL, Username and Password, AWS credentials</strong>, <strong>Access Key ID</strong>, <strong>Secret Access Key</strong>, and the <strong>Base DNS Domain</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Once you have logged in to ACM, Navigate to <strong>Credentials menu</strong> and then select <strong>Add Credentials</strong></p>
+</div>
+<div class="sect2">
+<h3 id="_you_will_need_to_provide_connection_details"><a class="anchor" href="#_you_will_need_to_provide_connection_details"></a>You will need to provide connection details:</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Cloud Provider Credentials: Choose <strong>Amazon Web Services</strong><br></p>
+</li>
+<li>
+<p>Credential Name:  <code>aws</code></p>
+</li>
+<li>
+<p>Namespace: <code>open-cluster-management</code></p>
+</li>
+<li>
+<p>Base DNS Domain:  This information is located on the demo console under the field <strong>rhacm_aws_subdomain</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When copy and pasting this information, make sure you omit the dot on the url, for example it should read <code>sandbox1536.opentlc.com</code> not <code>.sandbox1536.opentlc.com</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click NEXT</p>
+</li>
+<li>
+<p>Access Key ID: This information is located on the demo console under the field <strong>rhacm_aws_access_key_id</strong></p>
+</li>
+<li>
+<p>Secret Access Key ID: This information is located on the demo console under the field <strong>rhacm_aws_secret_key</strong></p>
+</li>
+<li>
+<p>Click NEXT - We don&#8217;t need to configure a Proxy so we can skip this screen</p>
+</li>
+<li>
+<p>Click NEXT</p>
+</li>
+<li>
+<p>Red Hat OpenShift pull secret:  <a href="https://cloud.redhat.com/openshift/install/pull-secret">Get the pull secret from cloud.redhat.com - RH login Required</a></p>
+</li>
+<li>
+<p>SSH private and public keys:  Use an existing key pair or <a href="https://docs.openshift.com/container-platform/4.9/installing/installing_aws/installing-aws-default.html#ssh-agent-using_installing-aws-default">generate a new ssh key</a></p>
+</li>
+</ul>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Please note you might need <strong>console.redhat.com</strong> access to get these keys</p>
+</div>
+</blockquote>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click NEXT</p>
+</li>
+<li>
+<p>Verify the information and click <strong>ADD</strong></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_a_new_openshift_cluster_in_aws"><a class="anchor" href="#_create_a_new_openshift_cluster_in_aws"></a>Create a new OpenShift cluster in AWS</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>From the menu select <strong>Infrastructure → Clusters</strong></p>
+</li>
+<li>
+<p>Click <strong>Create Cluster</strong></p>
+</li>
+<li>
+<p>Select <strong>Amazon Web services</strong></p>
+</li>
+<li>
+<p>Select the <strong>Infrastructure provider credential</strong> <strong>AWS</strong></p>
+</li>
+<li>
+<p>Click NEXT</p>
+</li>
+<li>
+<p>Add the desired <strong>cluster name</strong>.</p>
+</li>
+<li>
+<p>Leave the <strong>Cluster set empty for now</strong></p>
+</li>
+<li>
+<p>Select a <strong>Release Image</strong>, chose a 4.9 version</p>
+</li>
+<li>
+<p>Add a label of <strong>environment=prod</strong></p>
+</li>
+<li>
+<p>Click NEXT</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Change the region to <strong>see table below</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Your Location</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS Region to select</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>NORTH AMERICA</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Select <strong>us-west-1</strong> or <strong>us-west-2</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>EUROPE / EMEA</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Select <strong>eu-west-2</strong> or <strong>eu-west-3</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ASIA PACIFIC</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Select <strong>ap-southeast-2</strong> or <strong>ap-northeast-2</strong> or <strong>ap-east-1</strong></p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p>Click NEXT on the other screens or select <strong>7 - Review</strong> on the menu and then click <strong>CREATE</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><em>This process takes about 30 to 40 minutes depending on AWS traffic at the time this course is taken. Make sure you monitor for any failures and address as needed</em></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_a_single_node_cluster_sno_in_aws"><a class="anchor" href="#_creating_a_single_node_cluster_sno_in_aws"></a>Creating a Single Node Cluster (SNO) in AWS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>While we wait for the main cluster to provision, lets go ahead and provision a Single Node Cluster. In this exercise we will show you how to create a single node cluster (OCP 4.8 and Above required) in order to save some time and resources when building clusters for testing.</p>
+</div>
+<div class="paragraph">
+<p><strong>Please NOTE</strong> that provisioning SNO clusters in public clouds is not currently supported, we only support SNO clusters as bare metal, we leverage the public cloud in the example below to showcase the functionality only.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>From the menu select <strong>Infrastructure → Clusters</strong></p>
+</li>
+<li>
+<p>Click <strong>Create Cluster</strong></p>
+</li>
+<li>
+<p>Select <strong>Amazon Web services</strong></p>
+</li>
+<li>
+<p>Select the <strong>Infrastructure provider credential</strong>  <strong>AWS</strong></p>
+</li>
+<li>
+<p>Click NEXT</p>
+</li>
+<li>
+<p>Add the desired cluster name. Leave the Cluster set empty for now</p>
+</li>
+<li>
+<p>Select a <strong>Release Image</strong>, chose a <strong>OCP 4.9 version</strong></p>
+</li>
+<li>
+<p>Add a label of <strong>environment=qa</strong></p>
+</li>
+<li>
+<p>Click NEXT</p>
+</li>
+<li>
+<p>Change the region to <strong>see table below</strong></p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Your Location</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS Region to select</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>NORTH AMERICA</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Select <strong>us-west-1</strong> or <strong>us-west-2</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>EUROPE / EMEA</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Select <strong>eu-west-2</strong> or <strong>eu-west-3</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>ASIA PACIFIC</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Select <strong>ap-southeast-2</strong> or <strong>ap-northeast-2</strong> or <strong>ap-east-1</strong></p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p>Expand the <strong>Worker Pools</strong>, and change the worker node count to 0</p>
+</li>
+<li>
+<p>Click on step 7 to Review <strong>before</strong> proceeding, turn <strong>YAML: ON at the top of the screen.</strong></p>
+</li>
+<li>
+<p>Click on <strong>install-config</strong> in the YAML window pane and <strong>change the master replica number to 1</strong> (will likely be 3).  Double check that the worker replica is 0.</p>
+</li>
+<li>
+<p>Click on <strong>cluster</strong> in the YAML window pane and locate the section that defines an object of type: <strong>kind: MachinePool</strong>. Add the following line at the end of the <strong>MachinePool</strong> section.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>  skipMachinePools: true</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Be sure the new line is at the same indentation as the previous line.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on “<strong>Create</strong>” and the single node cluster creation will go through.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><em>This process takes about 10 to 20 minutes depending on AWS traffic at the time this course is taken. Make sure you monitor for any failures and address as needed</em></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_and_managing_applications_with_red_hat_advanced_cluster_management_for_kubernetes"><a class="anchor" href="#_creating_and_managing_applications_with_red_hat_advanced_cluster_management_for_kubernetes"></a>Creating and Managing Applications with Red Hat Advanced Cluster Management For Kubernetes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the previous lab, you explored the Cluster Lifecycle functionality in RHACM. This allowed you to create new OpenShift® clusters, which you can now use to deploy applications.</p>
+</div>
+<div class="paragraph">
+<p>Application Lifecycle functionality in RHACM provides the processes that are used to manage application resources on your managed clusters. This allows you to define a single or multi-cluster application using Kubernetes specifications, but with additional automation of the deployment and lifecycle management of resources to individual clusters. An application designed to run on a single cluster is straightforward and something you ought to be familiar with from working with OpenShift fundamentals. A multi-cluster application allows you to orchestrate the deployment of these same resources to multiple clusters, based on a set of rules you define for which clusters run the application components.</p>
+</div>
+<div class="paragraph">
+<p>This table describes the different components that the Application Lifecycle model in RHACM is composed of:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Resource</strong></th>
+<th class="tableblock halign-left valign-top">*Purpose *</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Channel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines a place where deployable resources are stored, such as an object store, Kubernetes namespace, Helm repository, or GitHub repository.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Subscription</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Definitions that identify deployable resources available in a Channel resource that are to be deployed to a target cluster.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PlacementRule</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the target clusters where subscriptions deploy and maintain the application. It is composed of Kubernetes resources identified by the Subscription resource and pulled from the location defined in the Channel resource.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A way to group the components here into a more easily viewable single resource. An Application resource typically references a Subscription resource.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>These are all Kubernetes custom resources, defined by a Custom Resource Definition (CRD), that are created for you when RHACM is installed. By creating these as Kubernetes native objects, you can interact with them the same way you would with a Pod. For instance, running oc get application retrieves a list of deployed RHACM applications just as oc get pods retrieves a list of deployed Pods.</p>
+</div>
+<div class="paragraph">
+<p>This may seem like a lot of extra resources to manage in addition to the deployables that actually make up your application. However, they make it possible to automate the composition, placement, and overall control of your applications when you are deploying to many clusters. With a single cluster, it is easy to log in and run oc create -f…​. If you need to do that on a dozen clusters, you want to make sure you do not make a mistake or miss a cluster, and you need a way to schedule and orchestrate updates to your applications. Leveraging the Application Lifecycle Builder in RHACM allows you to easily manage multi-cluster applications.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_an_application"><a class="anchor" href="#_creating_an_application"></a>Creating an Application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Prerequisites:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Navigate to <strong>Infrastructure → Clusters</strong></p>
+</li>
+<li>
+<p>Click on the <strong>local-cluster</strong></p>
+</li>
+<li>
+<p>Click the <strong>edit</strong> button under <strong>Labels</strong> and add a <strong>label</strong> : <code>environment=dev</code></p>
+</li>
+<li>
+<p>Verify the new clusters you build have the correct labels, it should be as follows:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Local-Cluster</strong> - <code>environment=dev</code></p>
+</li>
+<li>
+<p><strong>AWS 1st Cluster</strong> - <code>environment=prod</code></p>
+</li>
+<li>
+<p><strong>AWS 2nd Cluster</strong> - <code>environment=qa</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Navigate to <strong>Applications</strong></p>
+</li>
+<li>
+<p>Click <strong>Create application, select Subscription</strong>. Enter the following information:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Name</strong>: <code>book-import</code></p>
+</li>
+<li>
+<p><strong>Namespace</strong>: <code>book-import</code></p>
+</li>
+<li>
+<p>Under repository types, select the <strong>GIT</strong> repository</p>
+</li>
+<li>
+<p><strong>URL:</strong>  <a href="https://github.com/hichammourad/book-import.git">https://github.com/hichammourad/book-import.git</a></p>
+</li>
+<li>
+<p><strong>Branch</strong>:  <code>master-no-pre-post</code></p>
+</li>
+<li>
+<p><strong>Path:</strong>  <code>book-import</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Verify that <strong>Deploy application resources only on clusters matching specified labels</strong> is selected and enter the following information</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Label</strong>: <code>environment</code></p>
+</li>
+<li>
+<p><strong>Value</strong>: <code>dev</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Verify all the information is correct. Click <strong>Create</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>It will take a few minutes to deploy the application, <strong>Click</strong> on the <strong>Topology</strong> view and verify that <strong>all of the check marks are green</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Under the topology view, Select the <strong>Route</strong> and click on the <strong>Launch Route</strong> <strong>URL</strong>, this will take you to the Book Import application with several books available.</p>
+</div>
+<div class="paragraph">
+<p>Feel free to experiment with the application.  Edit it and change the label to <code>environment=prod</code>.  What happens to the application?</p>
+</div>
+<div class="paragraph">
+<p>You have now completed the overview of the <strong>Application Lifecycle functionality in RHACM.</strong></p>
+</div>
+<div class="paragraph">
+<p>You successfully deployed an application to a target cluster using RHACM. This approach leveraged a Git repository which housed all of the manifests that defined your application. RHACM was able to take those manifests and use them as deployables, which were then deployed to the target cluster.</p>
+</div>
+<div class="paragraph">
+<p>You also leverage the power of labels and deploy the application to your imported cluster. I highly encourage you to play around with the labels and deploy this application to your local cluster. You can also create other clusters and or applications if you so desire.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_governance_risk_and_compliance_security_and_compliance_use_case"><a class="anchor" href="#_governance_risk_and_compliance_security_and_compliance_use_case"></a>Governance, Risk, and Compliance (Security and compliance use case)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_creating_policies_in_acm"><a class="anchor" href="#_creating_policies_in_acm"></a>Creating Policies in ACM</h3>
+<div class="paragraph">
+<p>At this point, you have completed the overview labs for Cluster Lifecycle and Application Lifecycle capabilities in RHACM. In the Cluster Lifecycle Lab, you learned how RHACM can help manage the lifecycles of your Kubernetes clusters, including both deploying new clusters and importing existing clusters. In that lab, you created new clsters and used your RHACM instance to manage them.</p>
+</div>
+<div class="paragraph">
+<p>In the Application Lifecycle Lab, you continued exploring RHACM functionality and learned how to deploy and configure an application. You used the cluster that you added in the first module as the target for deploying an application.</p>
+</div>
+<div class="paragraph">
+<p>Now that you have a cluster and a deployed application, you need to make sure that they do not drift from their original configurations. This kind of drift is a serious problem, because it can happen from benign and benevolent fixes and changes, as well as malicious activities that you might not notice but can cause significant problems. The solution that RHACM provides for this is the Governance, Risk, and Compliance, or GRC, functionality.</p>
+</div>
+<div class="sect3">
+<h4 id="_review_grc_functionality"><a class="anchor" href="#_review_grc_functionality"></a>Review GRC Functionality</h4>
+<div class="paragraph">
+<p>To begin, it is important to define exactly what GRC is. In RHACM, you build policies that are applied to managed clusters. These policies can do different things, which are described below, but they ultimately serve to govern the configurations of your clusters. This governance over your cluster configurations reduces risk and ensures compliance with standards defined by stakeholders, which can include security teams and operations teams</p>
+</div>
+<div class="paragraph">
+<p>This table describes the three types of policy controllers available in RHACM along with the remediation mode they support:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Policy Controller</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Purpose</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Enforce or Inform</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configuration</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to configure any Kubernetes resource across your clusters. Where these resources are created or configured is determined by the namespaces you include (or exclude) in the policy.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Both</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Certificate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to detect certificates that are close to expiring. You can configure the certificate policy controller by updating the minimum duration parameter in your controller policy. When a certificate expires in less than the minimum duration, the policy becomes noncompliant. Certificates are identified from secrets in the included namespaces.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Inform</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Identity and Access Management (IAM)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to receive notifications about IAM policies that are noncompliant. In the 1.0 version of RHACM, this checks for compliance with the number of cluster administrators you allow in your cluster.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">inform</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>You need to create three different resources in order to implement the policy controllers:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Resource</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Function</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Policy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Policy defines what you actually want to check and possibly configure (with enforce). Policies include a policy-template which defines a list of objectDefinitions. The policy also determines the namespaces it is applied to, as well as the remediation actions it takes.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Placement Rule</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Identifies a list of managed clusters that are targeted when using this PlacementRule.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PlacementBinding</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Connect the policy to the PlacementRule.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This is a complex topic, and this course is only providing an overview. Please consult the <a href="https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.5/html-single/governance/index#governance">GRC product documentation</a> for more details on any of these policy controllers.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Navigate to the <strong>Governance</strong> screen and click <strong>create policy.</strong></p>
+</li>
+<li>
+<p>Navigate to the <a href="https://github.com/stolostron/policy-collection/tree/main/stable/CM-Configuration-Management">GitHub Repo</a> with all the policies and select the <a href="https://github.com/stolostron/policy-collection/blob/main/stable/SC-System-and-Communications-Protection/policy-etcdencryption.yaml">Etcd Encryption</a></p>
+</li>
+<li>
+<p>On the <strong>ETCD Encryption Policy</strong> click the <strong>RAW</strong> button on the policy.</p>
+</li>
+<li>
+<p>Copy the raw YAML.</p>
+</li>
+<li>
+<p>Under the <strong>Create Policy</strong> screen, enable the <strong>YAML</strong>. Copy and Paste the <strong>RAW YAML</strong> from the GitHub Repo</p>
+</li>
+<li>
+<p><strong>Namespace</strong>: <code>default</code></p>
+</li>
+<li>
+<p>Click on Step 5 and verify that everything looks correct.</p>
+</li>
+<li>
+<p>Click Submit.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Navigate to the Results screen, allow the scan to complete, it shouldn&#8217;t take more than 3 minutes.</p>
+</div>
+<div class="paragraph">
+<p>Once complete notice the violations you have, since we created this policy as a Inform only it will not fix any of the violations, lets go ahead and fix them</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>On the top of the policy click on the <strong>Actions → Edit Policy</strong></p>
+</li>
+<li>
+<p>Select <strong>Step 2</strong> and change the Remediation to <strong>Enforce</strong></p>
+</li>
+<li>
+<p>Select <strong>Step 5</strong> review that is under Remediation is set to <strong>Enforce</strong></p>
+</li>
+<li>
+<p>Click <strong>Submit</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Navigate to the Results screen, allow the remediation to complete, <em>it shouldn&#8217;t take more than 3 minutes</em></p>
+</div>
+<div class="paragraph">
+<p>Now you have succesfully created a Policy to scan your clusters, if you would like to play with other policies please visit the <a href="https://github.com/stolostron/policy-collection">Policy Repo</a> for more Policies you can test out.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="taints-and-tolerations.html" class="query-params-link">Taints and Tolerations</a></span>
+  <span class="next"><a href="acs-vulnerability.html" class="query-params-link">Advanced Cluster Security</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

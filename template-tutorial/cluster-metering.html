@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Cluster Metering :: MAD Ops Track</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/course-template/template-tutorial/cluster-metering.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="stylesheet" href="../_/css/site.css">
+<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
+          src="../_/img/header_logo.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" href="https://redhat-scholars.github.io/course-template">MAD Ops Track</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Books</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">CheatSheets</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">CheatSheet A</a>
+            <a class="navbar-item" href="#">CheatSheet B</a>
+            <a class="navbar-item" href="#">CheatSheet C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Upcoming Events</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Event A</a>
+            <a class="navbar-item" href="#">Event B</a>
+            <a class="navbar-item" href="#">Event C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Tutorial A</a>
+            <a class="navbar-item" href="#">Tutorial B</a>
+            <a class="navbar-item" href="#">Tutorial C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="template-tutorial" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html" class=" query-params-link">MAD Ops Track</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="setup.html">Getting Started</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="setup.html">Lab Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="01-getting-started.html">Logging in</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="environment.html">Operational Admin</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="environment.html">Environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="installation.html">Installation &amp; Verification</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="app-mgmt-basics.html">Application Management Basics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="app-storage-basics.html">Storage Basics</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="machinesets.html">Machinesets</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="infra-nodes.html">Infra Nodes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="logging.html">Logging</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ldap-groupsync.html">LDAP Sync</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#monitoring-basics">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="template-quota-limits.html">Templates Quotas and Limits</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="networking.html">Networking</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="disabling-project-self-provisioning.html">Project Self Provioning</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="clusterresourcequota.html">Cluster Quotas</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="taints-and-tolerations.html">Taints and Tolerations</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="acm-multicluster.html">Advanced Cluster Admin</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="acm-multicluster.html">Multicluster Admin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="acs-vulnerability.html">Advanced Cluster Security</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="acs-vulnerability.html">Vulnerability</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="acs-devsecops.html">DevSecOps</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#gitops.adoc">GitOps</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">MAD Ops Track</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">MAD Ops Track</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">MAD Ops Track</a></li>
+    <li><a href="cluster-metering.html">Cluster Metering</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/alexgroom/madops/edit/master/documentation/modules/ROOT/pages/cluster-metering.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Cluster Metering</h1>
+<div class="sect1">
+<h2 id="_lab_overview"><a class="anchor" href="#_lab_overview"></a>Lab Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This hands-on workshop is for both system administrators and application developers interested in learning how to deploy and manage Metering operator and schedule reports.</p>
+</div>
+<div class="sect2">
+<h3 id="_in_this_lab_you_will_learn_how_to"><a class="anchor" href="#_in_this_lab_you_will_learn_how_to"></a>In this lab you will learn how to</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Deploy Metering Operator from OperatorHub</p>
+</li>
+<li>
+<p>Install the Metering stack</p>
+</li>
+<li>
+<p>Verify the installation</p>
+</li>
+<li>
+<p>Writing Reports</p>
+</li>
+<li>
+<p>Reading Reports</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_background"><a class="anchor" href="#_background"></a>Background</h3>
+<div class="paragraph">
+<p>OpenShift Container Platform (OCP) 4.2 made Operator Metering generally available. Operator Metering is a chargeback and reporting tool to provide accountability for how resources are used across a cluster. Cluster admins can schedule reports based on historical usage data by Pod, Namespace, and Cluster wide. Operator Metering is part of the <a href="https://coreos.com/blog/introducing-operator-framework-metering">Operator Framework</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This exercise is done with a mix of CLI and the OpenShift web console. All of
+the interactions with the web console are effectively creating or
+manipulating API objects in the background. It is possible to fully automate
+the process and/or do it using the CLI or other tools, but these methods are
+not covered in the exercise or documentation at this time.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installing_operator_metering"><a class="anchor" href="#_installing_operator_metering"></a>Installing Operator Metering</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This lab assumes you have logged into an existing cluster with the <code>oc login</code> command</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_examine_cluster_projects"><a class="anchor" href="#_examine_cluster_projects"></a>Examine cluster projects</h4>
+<div class="paragraph">
+<p>View the <code>projects</code> in the existing cluster by running the <code>oc projects</code> command (this is analogous to <code>kubectl namespaces</code>). Search for openshift-metering in the output to make sure you&#8217;re not clobbering an existing installation:</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc projects | grep openshift-metering</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output should reflect that no Metering projects currently exist.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_login_to_the_openshift_web_console"><a class="anchor" href="#_login_to_the_openshift_web_console"></a>Login to the OpenShift Web Console</h4>
+<div class="paragraph">
+<p>Login to the <a href="%MASTER_URL%">OpenShift Web Console</a> with the kubeadmin credentials.</p>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">kubeadmin</code></pre>
+</div>
+</div>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">%KUBEADMIN_PASSWORD%</code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You might receive a self-signed certificate error in your browser when you
+first visit the OpenShift Web console. When OpenShift is installed, by default, a CA
+and SSL certificates are generated for all inter-component communication
+within OpenShift, including the web console.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_add_metering_operator_to_cluster"><a class="anchor" href="#_add_metering_operator_to_cluster"></a>Add Metering Operator to cluster</h4>
+<div class="paragraph">
+<p>To install the Metering Operator using the OpenShift Web Console first create an <code>openshift-metering</code> namespace, and then install the Metering Operator from OperatorHub.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In the OpenShift Container Platform web console, click <strong>Administration</strong> → <strong>Namespaces</strong> → <strong>Create Namespace</strong>.</p>
+</li>
+<li>
+<p>Set the name to <code>openshift-metering</code> and make sure to label the namespace with</p>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">openshift.io/cluster-monitoring=true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then click Create.</p>
+</div>
+</li>
+<li>
+<p>Next, click <strong>Operators</strong> → <strong>OperatorHub</strong>, and filter for <code>metering</code> to find the Metering Operator.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/metering-operator-image.png" alt="Metering Operator Logo">
+</div>
+</div>
+</li>
+<li>
+<p>Click the <strong>Metering</strong> card, review the package description, and then click <strong>Install</strong>.</p>
+</li>
+<li>
+<p>On the <strong>Install Operator</strong> screen, make sure the <code>4.6</code> <strong>Update Channel</strong> is selected. Also, verify that <code>A specific namespace on the cluster</code> is selected as the <strong>Installation Mode</strong>. The <strong>Installed Namespace</strong> should already be set  to <code>Operator recommended namespace</code> with <code>openshift-metering</code> selected. Keep the <strong>Approval Strategy</strong> to <code>Automatic</code>.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/metering-install-operator.png" alt="Metering Operator Install">
+</div>
+</div>
+<div class="paragraph">
+<p>Once you&#8217;ve verified these options, click "Install".</p>
+</div>
+</li>
+<li>
+<p>This will take you the the "Installing Operator" progress page.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/metering-installing-progress.png" alt="Metering Operator Install Progress">
+</div>
+</div>
+<div class="paragraph">
+<p>Once the page displays <strong>Installed operator - ready for use</strong>, go ahead and click on <code>View Operator</code>.</p>
+</div>
+</li>
+<li>
+<p>This will take you to the <strong>Operator Details</strong> page.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/metering-details-page.png" alt="Metering Operator Install Progress">
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>It may take a few minutes for the metering operator to install, be patient.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_install_the_metering_stack"><a class="anchor" href="#_install_the_metering_stack"></a>Install the Metering stack</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the web console, ensure you are on the <strong>Operator Details</strong> page for the Metering Operator in the <code>openshift-metering</code> project. If you&#8217;ve navigated away from this page, you can get back to this page by clicking <strong>Operators</strong> → <strong>Installed Operators</strong>, then selecting the Metering Operator.</p>
+</li>
+<li>
+<p>Under <strong>Provided APIs</strong>, click <strong>Create Instance</strong> on the <strong>Metering Configuration</strong> card.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/metering-config-card.png" alt="Metering Config Card">
+</div>
+</div>
+</li>
+<li>
+<p>Click on <strong>YAML View</strong> in the <strong>Configure via</strong> section; and replace the default configuration by copying and pasting the following MeteringConfig into the YAML editor and click <code>Create</code>:</p>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">apiVersion: metering.openshift.io/v1
+kind: MeteringConfig
+metadata:
+  name: "operator-metering"
+spec:
+  unsupportedFeatures:
+    enableHDFS: true
+  storage:
+    type: "hive"
+    hive:
+      type: "hdfs"
+      hdfs:
+        # Leave this value as-is.
+        namenode: "hdfs-namenode-0.hdfs-namenode:9820"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In order to not create a dependency on OpenShift Container Storage, this lab uses an unsupported storage configuration, HDFS, that the Metering operator deploys by itself.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_verify_the_installation"><a class="anchor" href="#_verify_the_installation"></a>Verify the installation</h3>
+<div class="paragraph">
+<p>To verify your metering installation, you can check that all the required Pods have been created, and check that your report data sources are beginning to import data.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to <strong>Workloads</strong> → <strong>Pods</strong> in the metering namespace and verify that Pods are being created. This can take several minutes after installing the metering stack.</p>
+<div class="paragraph">
+<p>You can run the same check using the <code>oc</code> CLI:</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n openshift-metering get pods</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should see similiar output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>NAME                                  READY   STATUS              RESTARTS   AGE
+hive-metastore-0                      1/2     Running             0          52s
+hive-server-0                         2/3     Running             0          52s
+metering-operator-68dd64cfb6-pxh8v    2/2     Running             0          2m49s
+presto-coordinator-0                  2/2     Running             0          31s
+reporting-operator-56c6c878fb-2zbhp   0/2     ContainerCreating   0          4s</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Continue to check your Pods until they show <code>Ready</code>. This can take several minutes. Many Pods rely on other components to function before they themselves can be considered ready. Some Pods may restart if other Pods take too long to start, this is okay and can be expected during installation.</p>
+<div class="paragraph">
+<p>You can follow the instantiation of the Pods by waiting for all the <code>StatefulSet</code> rollouts:</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">until [[ $(oc get sts -n openshift-metering -o name | wc -l) -gt 4 ]]; do echo "waiting for statefulsets..." ; sleep 10 ; done
+oc rollout status sts/hdfs-datanode -n openshift-metering
+oc rollout status sts/hdfs-namenode -n openshift-metering
+oc rollout status sts/hive-metastore -n openshift-metering
+oc rollout status sts/hive-server -n openshift-metering
+oc rollout status sts/presto-coordinator -n openshift-metering
+oc rollout status sts/presto-worker -n openshift-metering</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once done, you can use the <code>oc</code> CLI, to see them running:</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n openshift-metering get pods</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>NAME                                  READY   STATUS    RESTARTS   AGE
+hdfs-datanode-0                       1/1     Running   0          6m32s
+hdfs-namenode-0                       1/1     Running   0          6m32s
+hive-metastore-0                      2/2     Running   0          6m9s
+hive-server-0                         3/3     Running   0          6m9s
+metering-operator-6f7fb6f6fd-dfk6w    1/1     Running   0          22m
+presto-coordinator-0                  2/2     Running   0          5m43s
+reporting-operator-57c5b4d577-flsqb   2/2     Running   0          5m13s</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Next, use the <code>oc</code> CLI to verify that the ReportDataSources are beginning to import data, indicated by a valid timestamp in the <code>EARLIEST METRIC</code> column (this may take a few minutes). We filter out the "-raw" ReportDataSources which do not import data:</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get reportdatasources -n openshift-metering | grep -v raw</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>After all Pods are ready and you have verified that data is being imported, you can begin using metering to collect data and report on your cluster.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_writing_reports"><a class="anchor" href="#_writing_reports"></a>Writing Reports</h3>
+<div class="paragraph">
+<p>The Report custom resource is used to manage the execution and status of reports. Metering produces reports derived from usage data sources, which can be used in further analysis and filtering.</p>
+</div>
+<div class="paragraph">
+<p>A single Report resource represents a job that manages a database table and updates it with new information according to a schedule. The Report exposes the data in that table via the reporting-operator HTTP API. Reports with a <code>spec.schedule</code> field set are always running and track what time periods it has collected data for. This ensures that if metering is shutdown or unavailable for an extended period of time, it will backfill the data starting where it left off. If the schedule is unset, then the Report will run once for the time specified by the <code>reportingStart</code> and <code>reportingEnd</code>.</p>
+</div>
+<div class="paragraph">
+<p>By default, reports wait for <code>ReportDataSources</code> to have fully imported any data covered in the reorting peroid. If the Report has a schedule, it will wait to run until the data in the period currently being processed has finished importing.</p>
+</div>
+<div class="paragraph">
+<p>Use the <code>oc</code> CLI to get ReportQueries to see what reports are available:</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get reportqueries -n openshift-metering | grep -v raw</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>ReportQueries with the <code>-raw</code> suffix are used by other ReportQueries to build more complex queries, and should not be used directly for reports. Therefore, we omitted them with the <code>grep -v raw</code> command.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_create_report_with_a_schedule"><a class="anchor" href="#_create_report_with_a_schedule"></a>Create Report with a Schedule</h4>
+<div class="paragraph">
+<p>The following example Report will contain information on every Pod’s CPU requests, and will run every hour, adding the last hours worth of data each time it runs.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In the OpenShift Container Platform web console, click <strong>Operators</strong> → <strong>Installed Operators</strong>. On the <strong>Installed Operators</strong> click the Metering operator. This will bring you to the details page again.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/metering-details-page.png" alt="Metering Details Page">
+</div>
+</div>
+</li>
+<li>
+<p>Under the <strong>Metering Report</strong> card, click <strong>Create Instance</strong>.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/metering-report-card.png" alt="Metering Report card">
+</div>
+</div>
+<div class="paragraph">
+<p>This opens the <strong>Create Report</strong> page. Click <code>YAML View</code> to get the YAML editor</p>
+</div>
+</li>
+<li>
+<p>Replace the default configuration by copying and pasting the following MeteringConfig into the YAML editor and click Create:</p>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">apiVersion: metering.openshift.io/v1
+kind: Report
+metadata:
+  name: cluster-cpu-usage-hourly
+spec:
+  query: "cluster-cpu-usage"
+  schedule:
+    period: "hourly"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Next, use the <code>oc</code> CLI to verify that the report was created:</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get reports -n openshift-metering</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Using the <code>oc</code> CLI, it shows output similar to the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>NAME                       QUERY               SCHEDULE   RUNNING                  FAILED   LAST REPORT TIME   AGE
+cluster-cpu-usage-hourly   cluster-cpu-usage   hourly     ReportingPeriodWaiting                               7s</pre>
+</div>
+</div>
+</li>
+<li>
+<p>The alloted time will pass (one hour) and a report will be run. For the purpose of this workshop, let&#8217;s keep going.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_create_one_time_report"><a class="anchor" href="#_create_one_time_report"></a>Create One-Time Report</h4>
+<div class="paragraph">
+<p>The following example Report will contain information on every Namespace’s CPU requests, and will run one time.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In the OpenShift Container Platform web console, click <strong>Operators</strong> → <strong>Installed Operators</strong>. On the <strong>Installed Operators</strong> click the Metering operator. This will, once again, bring you to the details page.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/metering-details-page.png" alt="Metering Details Page">
+</div>
+</div>
+</li>
+<li>
+<p>Under the <strong>Metering Report</strong> card, click <strong>Create Instance</strong>.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/metering-report-card.png" alt="Metering Report card">
+</div>
+</div>
+<div class="paragraph">
+<p>This opens the <strong>Create Report</strong> page. Click <code>YAML View</code> to get the YAML editor</p>
+</div>
+</li>
+<li>
+<p>Replace the default configuration by copying and pasting the following MeteringConfig into the YAML editor and click Create:</p>
+<div class="listingblock copypaste">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">apiVersion: metering.openshift.io/v1
+kind: Report
+metadata:
+  name: namespace-cpu-request-2020
+  namespace: openshift-metering
+spec:
+  query: namespace-cpu-request
+  reportingEnd: '2025-12-30T23:59:59Z'
+  reportingStart: '2020-01-01T00:00:00Z'
+  runImmediately: true</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Next, use the <code>oc</code> CLI to verify that the report was created:</p>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get reports -n openshift-metering</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Using the <code>oc</code> CLI, it shows output similar to the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>NAME                         QUERY                   SCHEDULE   RUNNING                  FAILED   LAST REPORT TIME       AGE
+cluster-cpu-usage-hourly     cluster-cpu-usage       hourly     ReportingPeriodWaiting                                   4m37s
+namespace-cpu-request-2020   namespace-cpu-request              Finished                          2020-12-30T23:59:59Z   28s</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_reading_reports"><a class="anchor" href="#_reading_reports"></a>Reading Reports</h3>
+<div class="paragraph">
+<p>To view reports complete the following:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In the OpenShift Container Platform web console, click <strong>Administration</strong> → <strong>Chargeback</strong>. This opens the <code>Chargeback Reporting</code> page.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/chargeback-rep.png" alt="Chargeback Reporting">
+</div>
+</div>
+</li>
+<li>
+<p>Select the one-time report created in the previous section titled <code>namespace-cpu-request-2020</code></p>
+</li>
+<li>
+<p>From this screen the report can be downloaded as a CSV file by scolling down, and clicking the Download button. The report is also displayed in the lower part of the screen.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/download-csv.png" alt="Download CSV">
+</div>
+</div>
+<div class="paragraph">
+<p>This file can be imported to any metering application that accepts CSV format.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
