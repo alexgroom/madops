@@ -9,7 +9,7 @@ In the demo console where you have all the credentials, you will find the *ACM H
 Once you have logged in to ACM, Navigate to *Credentials menu* and then select *Add Credentials*
 
 
-=== You will need to provide connection details:
+== You will need to provide Connection details:
 
 * Cloud Provider Credentials: Choose *Amazon Web Services* +
 * Credential Name:  `aws`
@@ -28,15 +28,95 @@ When copy and pasting this information, make sure you omit the dot on the url, f
 
 * Click NEXT
 
-* Red Hat OpenShift pull secret:  https://cloud.redhat.com/openshift/install/pull-secret[Get the pull secret from cloud.redhat.com - RH login Required]
+> Please note you might need *console.redhat.com* access a pull secret and you may need to generate SSH keys - see next sections for details
 
-* SSH private and public keys:  Use an existing key pair or https://docs.openshift.com/container-platform/4.9/installing/installing_aws/installing-aws-default.html#ssh-agent-using_installing-aws-default[generate a new ssh key]
 
-> Please note you might need *console.redhat.com* access to get these keys
+* Red Hat OpenShift pull secret
+
+* SSH private and public keys:  Use an existing key pair or generate them - see below
 
 * Click NEXT
 
 * Verify the information and click *ADD*
+
+== Pull Secret from console.redhat.com
+
+It is likely you will need to get these values from the Red Hat console web site.
+
+There are 2 steps to this process
+* Register for a console.redhat.com account
+* Download a pull secret
+
+=== Create/Register Account
+
+Access the site using the link link:https://console.redhat.com/openshift/install/pull-secret[Register] then `*Register for a Red Hat account*`
+
+image::console-redhat-register2.png[Register]
+
+Enter the required details for a personal account:
+
+image::console-redhat-register1.png[Enter details]
+
+Aftering registering you should land on the *Pull Secret* page.
+
+=== Pull Secret
+
+Request a pull secret using the link link:https://console.redhat.com/openshift/install/pull-secret[Pull Secret]
+
+image::console-redhat-pullsecret.png[Pull secret]
+
+Copy the generated value into you paste buffer and then copy this into the *ACM Credentials* page
+
+== SSH Keys
+
+These can be generated locally. Using the web console execute the following, accept all the defaults
+
+[source,bash,role="execute"]
+----
+ssh-keygen -t ed25519 -N ’’
+----
+
+You should see output like this:
+
+[source,bash]
+----
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/user/.ssh/id_ed25519): 
+Created directory '/home/user/.ssh'.
+Your identification has been saved in /home/user/.ssh/id_ed25519.
+Your public key has been saved in /home/user/.ssh/id_ed25519.pub.
+The key fingerprint is:
+SHA256:fWk0P8YrpOwu8MJH5spVghngLpJzI++IRMruimP1fwY user@workspace9b72c7700ebd425f-5c5fb448b8-XXXX
+The key's randomart image is:
++--[ED25519 256]--+
+|    .            |
+|   . .           |
+|    . .     o    |
+| . .   + . . =   |
+|=.+ . o S o = =  |
+|+* +  .Eo+ = . o |
+|.oo .. *o o . .  |
+|*+   oo.=+   .   |
+|O+.   +=ooo      |
++----[SHA256]-----+
+----
+
+Now *cat* the output files and copy this text _carefully_ into the inputs for the ACM Credentials screens where
+appropriate.
+
+*Private key*
+[source,bash,role="execute"]
+----
+cat .ssh/id_ed25519
+----
+
+*Public Key*
+[source,bash,role="execute"]
+----
+cat .ssh/id_ed25519.pub
+----
+
+
 
 == Create a new OpenShift cluster in AWS
 
@@ -81,8 +161,13 @@ While we wait for the main cluster to provision, lets go ahead and provision a S
 * Select a *Release Image*, chose a *OCP 4.9 version*
 * Add a label of *environment=qa*
 * Click NEXT
+* Change the region to, *see table below*
 
-* Change the region to *see table below*
+[TIP]
+====
+For this workshop, best results are gained from choosing a different region for 
+each cluster you create
+====
 
 
 |===
@@ -101,6 +186,8 @@ While we wait for the main cluster to provision, lets go ahead and provision a S
 
 
 * Click on *cluster* in the YAML window pane and locate the section that defines an object of type: *kind: MachinePool*. Add the following line at the end of the *MachinePool* section.
+
+[source,bash,role="execute"]
 ----
   skipMachinePools: true
 ----

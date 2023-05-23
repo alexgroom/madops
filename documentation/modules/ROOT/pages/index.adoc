@@ -2,21 +2,33 @@
 :page-layout: home
 :!sectids:
 
+Welcome to the *Modern Application Development Roadshow* Operations (Ops) Track lab guide.
+
+image::madops-intro.png[,400]
+
 [.text-center.strong]
 == Getting Started
 
-Checking the lab environment is running, logging and setting up the lab Prerequisites
+Checking the lab environment is running, logging in and setting up the lab prerequisites
 
-* xref:setup.adoc[Getting Started]
+*xref:setup.adoc[Getting Started]*
 
 == Operational Admin
 
-* xref:environment.adoc[Operational Admin]
+Hands-on tasks related to operational managment of an OpenShift Cluster. You will be _cluster-admin_
+for the day on your own cluster.
+
+*xref:environment.adoc[Operational Admin]*
 
 == Advanced Cluster Management
 
-* xref:acm-multicluster.adoc[ACM]
+Explore the cluster lifecycle for mnanaging multiple clusters. Learn about creating, upgrading, and destroying 
+and importing clusters in a multi cloud environment.
+
+*xref:acm-multicluster.adoc[ACM]*
 
 == Advanced Cluster Security
 
-* xref:acs-vulnerability.adoc[ACS]
+Explore using cluster security to detect vulnerabilities and then extend its capabilitities to DevSecOps inside a CI/CD piepline.
+
+*xref:acs-vulnerability.adoc[ACS]*

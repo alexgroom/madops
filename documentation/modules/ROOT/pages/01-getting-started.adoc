@@ -12,7 +12,7 @@ link below to reach your OpenShift cluster web console. If this fails, return to
 page and follow its instructions.
 
 Click on this link *link:https://console-openshift-console.%ROUTE_SUBDOMAIN%[OpenShift Console^, role='params-link']* 
-and enter *kubeadmin* the kubeadmin *password*: 
+and enter the username *kubeadmin* and the kubeadmin *password*: 
 
 [source,none,role="copypaste"]
 ----
@@ -30,12 +30,11 @@ image::openshift-login.png[]
 == Operator: OpenShift Web Terminal
 Now we need to install the *Web Terminal*, it is a web-based terminal for OpenShift. It allows users to access a terminal in a pod from the OpenShift Web Console.
 
-image::webterminal-operator-details.png[Web Terminal Details]
-
 == OpenShift Operators
 
-This OpenShift cluster has been pre-configured with the operators and that may include the Web Terminal operator, 
+This OpenShift cluster has been pre-configured with some operators and that may include the Web Terminal operator, 
 but we can confirm this. 
+
 Firstly, navigate to the *Administrator* perspective, and click on *Operators* from within the left-hand menu. 
 Now, click on *Installed Operators* from the sub-menu.
 
@@ -45,9 +44,9 @@ Here, we can view the operators that have been installed to our cluster, as well
 
 image::installed-operators.png[Installed Operators]
 
-If the *Web Terminal* is not present, now click on `*Operator Hub*` in the side menu.
+If the *Web Terminal* is not present, now click on the *Operator Hub* choice in the side menu.
 
-Use the search the find the *Web Terminal* operator. Make sure you choose the *Red Hat* variant.
+Use the search box to the find the *Web Terminal* operator. Make sure you choose the *Red Hat* variant.
 
 image::web-terminal-search.png[Web Terminal Search]
 

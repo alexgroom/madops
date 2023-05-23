@@ -565,17 +565,6 @@ You will see something like the following:
 prometheus-k8s-openshift-monitoring.%ROUTE_SUBDOMAIN%
 ----
 
-[WARNING]
-====
-Before continuing, make sure to go to the %MASTER_URL%[OpenShift Web Console] (Do not 
-use the console that is built-in to the workshop). Instead, please use the 
-one that you will find on your credentials page and log out by 
-using the dropdown menu at the upper right where it says `kube:admin`.
-Otherwise Prometheus will try to use your `kubeadmin` user to pass through
-authentication. While it will work, it doesn't demonstrate the
-`cluster-reader` role.
-====
-
 The installer configured a `Route` for Prometheus by default. Go ahead and
 control+click the link:https://prometheus-k8s-openshift-monitoring.{{
 ROUTE_SUBDOMAIN }}[Prometheus link] to open it in your browser. You'll be

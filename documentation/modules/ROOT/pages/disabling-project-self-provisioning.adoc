@@ -47,13 +47,6 @@ Kubernetes Namespace.
 In order to examine the `clusterrolebinding` for `self-provisioners`; you
 need to be *kubeadmin*.
 
-[NOTE]
-====
-You could also use the serviceaccount user that we've used in previous labs.
-Since `kubeadmin` and the service account user both have the `cluster-admin`
-role, it really doesn't matter.
-====
-
 [source,bash,role="execute"]
 ----
 oc login -u kubeadmin -p %KUBEADMIN_PASSWORD%
