@@ -4,7 +4,7 @@ runtime:
 site:
   title: MAD Ops Track
   url: https://redhat-scholars.github.io/course-template
-  start_page: template-tutorial::index.adoc
+  start_page: madops::index.adoc
 
 content:
   sources:

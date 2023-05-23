@@ -4,7 +4,7 @@ runtime:
 site:
   title: MAD Ops Workshop (Dev Mode)
   url: http://localhost:3000/rhs-build-course/index.html
-  start_page: template-tutorial::index.adoc
+  start_page: madops::index.adoc
 
 content:
   sources:
