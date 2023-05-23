@@ -285,22 +285,6 @@ Kubernetes Namespace.</p>
 <p>In order to examine the <code>clusterrolebinding</code> for <code>self-provisioners</code>; you
 need to be <strong>kubeadmin</strong>.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>You could also use the serviceaccount user that we&#8217;ve used in previous labs.
-Since <code>kubeadmin</code> and the service account user both have the <code>cluster-admin</code>
-role, it really doesn&#8217;t matter.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 <div class="listingblock execute">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc login -u kubeadmin -p %KUBEADMIN_PASSWORD%</code></pre>

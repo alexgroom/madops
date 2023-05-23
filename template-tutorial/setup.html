@@ -205,17 +205,24 @@
 <h2 id="_lab_parameters"><a class="anchor" href="#_lab_parameters"></a>Lab Parameters</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The lab parameters can provide either via URL parameters or manually copied into the lab guide below.</p>
+<p>The lab values can be provided either via the launch URL or must be manually copied into the lab guide - see below.</p>
 </div>
 <div class="paragraph">
-<p>All these values need to be successfully set for the lab guide to personalise for your environment.
-Please use the lab introduction screen to find any missing information:</p>
+<p>All these values need to be successfully set for the lab guide to personalise correctly for your environment.</p>
+</div>
+<div class="sect2">
+<h3 id="_lab_introduction_page"><a class="anchor" href="#_lab_introduction_page"></a>Lab Introduction Page</h3>
+<div class="paragraph">
+<p>Please use the lab introduction page to fill in any missing information:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/rhpd-starter-screen.png" alt="RHPD Starter screen">
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_required_lab_values"><a class="anchor" href="#_required_lab_values"></a>Required Lab Values</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -271,13 +278,23 @@ Please use the lab introduction screen to find any missing information:</p>
         }
     }
 
-    function goWithValues() {
-      kPass = document.getElementById('kPass');
-      masterUrl = document.getElementById('masterUrl');
-      subDomain = getSubdomain(masterUrl.value.trim());
+    function checkURL(url)
+    {
+      //chance to parse the url and check all elements are there using JavaScript
+      return url.trim();
+    }
 
-      window.location.search = ('&KUBEADMIN_PASSWORD=' + kPass.value.trim() + '&ROUTE_SUBDOMAIN=' +
-          subDomain + '&MASTER_URL=' + masterUrl.value.trim());
+    function goWithValues() {
+      kPass = document.getElementById('kPass').value.trim();
+      masterUrl = checkURL(document.getElementById('masterUrl').value);
+      if (masterUrl != "")
+      {
+        subDomain = getSubdomain(masterUrl);
+      }
+
+      window.location.search = ('&KUBEADMIN_PASSWORD=' + kPass + '&ROUTE_SUBDOMAIN=' +
+          subDomain + '&MASTER_URL=' + masterUrl);
+
     }
 
   </script>
@@ -289,7 +306,7 @@ Please use the lab introduction screen to find any missing information:</p>
         <form action="javascript:void(0);" onsubmit="goWithValues();">
           OpenShift Console:<input size="50" id="masterUrl" type="text" placeholder="OpenShift Console URL" style="margin-left: 10px"><br>
           Kubeadmin Password:<input size="30" id="kPass" type="text" placeholder="Kubeadmin password" style="margin-left: 10px"><br><br>
-          <input type="button" onclick="goWithValues()" value="Update Values" style="color: white; background: black; padding-top: 10px; padding-bottom: 10px; padding-right:20px; padding-left: 20px">
+          <input type="button" onclick="goWithValues()" value="Set Values" style="color: white; background: black; padding-top: 10px; padding-bottom: 10px; padding-right:20px; padding-left: 20px">
         </form>
         </span>
         </div>
@@ -299,6 +316,7 @@ Please use the lab introduction screen to find any missing information:</p>
       </div>
 
     </div>
+</div>
 </div>
 </div>
 </div>

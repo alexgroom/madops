@@ -206,8 +206,11 @@
 <div class="paragraph">
 <p>Once you have logged in to ACM, Navigate to <strong>Credentials menu</strong> and then select <strong>Add Credentials</strong></p>
 </div>
-<div class="sect2">
-<h3 id="_you_will_need_to_provide_connection_details"><a class="anchor" href="#_you_will_need_to_provide_connection_details"></a>You will need to provide connection details:</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_you_will_need_to_provide_connection_details"><a class="anchor" href="#_you_will_need_to_provide_connection_details"></a>You will need to provide Connection details:</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
@@ -244,23 +247,23 @@
 <li>
 <p>Click NEXT</p>
 </li>
-<li>
-<p>Red Hat OpenShift pull secret:  <a href="https://cloud.redhat.com/openshift/install/pull-secret">Get the pull secret from cloud.redhat.com - RH login Required</a></p>
-</li>
-<li>
-<p>SSH private and public keys:  Use an existing key pair or <a href="https://docs.openshift.com/container-platform/4.9/installing/installing_aws/installing-aws-default.html#ssh-agent-using_installing-aws-default">generate a new ssh key</a></p>
-</li>
 </ul>
 </div>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
-<p>Please note you might need <strong>console.redhat.com</strong> access to get these keys</p>
+<p>Please note you might need <strong>console.redhat.com</strong> access a pull secret and you may need to generate SSH keys - see next sections for details</p>
 </div>
 </blockquote>
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p>Red Hat OpenShift pull secret</p>
+</li>
+<li>
+<p>SSH private and public keys:  Use an existing key pair or generate them - see below</p>
+</li>
 <li>
 <p>Click NEXT</p>
 </li>
@@ -268,6 +271,113 @@
 <p>Verify the information and click <strong>ADD</strong></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pull_secret_from_console_redhat_com"><a class="anchor" href="#_pull_secret_from_console_redhat_com"></a>Pull Secret from console.redhat.com</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is likely you will need to get these values from the Red Hat console web site.</p>
+</div>
+<div class="paragraph">
+<p>There are 2 steps to this process
+* Register for a console.redhat.com account
+* Download a pull secret</p>
+</div>
+<div class="sect2">
+<h3 id="_createregister_account"><a class="anchor" href="#_createregister_account"></a>Create/Register Account</h3>
+<div class="paragraph">
+<p>Access the site using the link <a href="https://console.redhat.com/openshift/install/pull-secret">Register</a> then <code><strong>Register for a Red Hat account</strong></code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/console-redhat-register2.png" alt="Register">
+</div>
+</div>
+<div class="paragraph">
+<p>Enter the required details for a personal account:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/console-redhat-register1.png" alt="Enter details">
+</div>
+</div>
+<div class="paragraph">
+<p>Aftering registering you should land on the <strong>Pull Secret</strong> page.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pull_secret"><a class="anchor" href="#_pull_secret"></a>Pull Secret</h3>
+<div class="paragraph">
+<p>Request a pull secret using the link <a href="https://console.redhat.com/openshift/install/pull-secret">Pull Secret</a></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/console-redhat-pullsecret.png" alt="Pull secret">
+</div>
+</div>
+<div class="paragraph">
+<p>Copy the generated value into you paste buffer and then copy this into the <strong>ACM Credentials</strong> page</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ssh_keys"><a class="anchor" href="#_ssh_keys"></a>SSH Keys</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>These can be generated locally. Using the web console execute the following, accept all the defaults</p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ssh-keygen -t ed25519 -N ’’</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should see output like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/user/.ssh/id_ed25519):
+Created directory '/home/user/.ssh'.
+Your identification has been saved in /home/user/.ssh/id_ed25519.
+Your public key has been saved in /home/user/.ssh/id_ed25519.pub.
+The key fingerprint is:
+SHA256:fWk0P8YrpOwu8MJH5spVghngLpJzI++IRMruimP1fwY user@workspace9b72c7700ebd425f-5c5fb448b8-XXXX
+The key's randomart image is:
++--[ED25519 256]--+
+|    .            |
+|   . .           |
+|    . .     o    |
+| . .   + . . =   |
+|=.+ . o S o = =  |
+|+* +  .Eo+ = . o |
+|.oo .. *o o . .  |
+|*+   oo.=+   .   |
+|O+.   +=ooo      |
++----[SHA256]-----+</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now <strong>cat</strong> the output files and copy this text <em>carefully</em> into the inputs for the ACM Credentials screens where
+appropriate.</p>
+</div>
+<div class="paragraph">
+<p><strong>Private key</strong></p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat .ssh/id_ed25519</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Public Key</strong></p>
+</div>
+<div class="listingblock execute">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat .ssh/id_ed25519.pub</code></pre>
 </div>
 </div>
 </div>
@@ -387,9 +497,24 @@
 <p>Click NEXT</p>
 </li>
 <li>
-<p>Change the region to <strong>see table below</strong></p>
+<p>Change the region to, <strong>see table below</strong></p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For this workshop, best results are gained from choosing a different region for
+each cluster you create</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -431,9 +556,9 @@
 </li>
 </ul>
 </div>
-<div class="listingblock">
+<div class="listingblock execute">
 <div class="content">
-<pre>  skipMachinePools: true</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  skipMachinePools: true</code></pre>
 </div>
 </div>
 <div class="paragraph">
