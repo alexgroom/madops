@@ -88,6 +88,15 @@ into this window to complete the labs. When you see a yellow box that indicates
 somethign to copy. You can click on the *copy* button (top right) to put the text
 into your paste buffer and then paste into the web terminal.
 
+One really important command to start with is to set the timeout of the Web terminal
+much longer so it doesn't timeout during your workshop!
+
+[source,shell,role=copypaste]
+----
+wtoctl set timeout 240m
+----
+
+
 [TIP]
 ====
 In order to copy and paste content into the terminal, you can use
