@@ -404,7 +404,7 @@ pods		2	10</pre>
 </div>
 <div class="listingblock execute">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get ns welcome1 -o yaml</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get namespace welcome1 -o yaml</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -541,8 +541,8 @@ oc adm policy add-role-to-user edit normaluser1 -n pricelist-backend</code></pre
 </div>
 <div class="listingblock execute">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc label ns pricelist-frontend appstack=pricelist
-oc label ns pricelist-backend appstack=pricelist</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc label namespace pricelist-frontend appstack=pricelist
+oc label namespace pricelist-backend appstack=pricelist</code></pre>
 </div>
 </div>
 <div class="paragraph">
