@@ -434,7 +434,7 @@ template-test-limits   2023-04-12T13:11:40Z
 ====
 Please make sure that the `project-request` template is created in the
 `openshift-config` project. Defining it in the OpenShift API server
-configurion without having the template in place will cause new projects to
+configuration without having the template in place will cause new projects to
 fail to create.
 ====
 

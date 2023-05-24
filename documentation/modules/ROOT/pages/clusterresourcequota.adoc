@@ -159,7 +159,7 @@ You see that not only that 2 out of 10 pods are being used, but that the namespa
 
 [source,bash,role="execute"]
 ----
-oc get ns welcome1 -o yaml
+oc get namespace welcome1 -o yaml
 ----
 
 The output should look something like this. Take special note of the annotations:
@@ -283,8 +283,8 @@ To identify these two projects to belonging to the `pricelist` application stack
 
 [source,bash,role="execute"]
 ----
-oc label ns pricelist-frontend appstack=pricelist
-oc label ns pricelist-backend appstack=pricelist
+oc label namespace pricelist-frontend appstack=pricelist
+oc label namespace pricelist-backend appstack=pricelist
 ----
 
 Run the `oc describe` command for the `for-pricelist` cluster resource quota:

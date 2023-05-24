@@ -206,7 +206,7 @@ especially on a busy cluster.
 
 [source,bash,role="execute"]
 ----
-sleep 30
+sleep 60
 oc rollout status -n  openshift-apiserver deploy/apiserver
 ----
 

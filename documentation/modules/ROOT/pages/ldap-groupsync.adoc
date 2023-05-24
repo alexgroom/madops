@@ -542,7 +542,7 @@ This failure is exactly what we wanted to see.
 
 == Prometheus
 Now that you have a user with `cluster-reader` privileges (one that can see
-many administrative aspects of the cluster), we can revisit Prometheus and
+many administrative aspects of the cluster), we can visit Prometheus and
 attempt to log-in to it.
 
 Login as a the user with `cluster-reader` privileges:
@@ -576,6 +576,7 @@ More specifically, the `ose-fancy-dev` group has `cluster-reader`
 permissions, and `fancyuser1` is a member. Remember that the password
 for all of these users is:
 
+[source,bash,role="copypaste"]
 ----
 Op#nSh1ft
 ----
