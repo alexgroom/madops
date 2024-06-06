@@ -30,7 +30,7 @@ nodes. In other words, user workload may commingle with infrastructure
 workload until full taint/toleration support is implemented in all operators.
 
 Taints and tolerations work in tandem to ensure that workloads are not scheduled 
-onto certian nodes. They’ll be explored later on.
+onto certain nodes. They’ll be explored later on.
 ====
 
 To accomplish this, you will create additional `MachineSets`.
@@ -379,7 +379,7 @@ oc apply -f madopssupport/ingresscontroller.yaml
 [NOTE]
 ====
 You may see an error that says `Warning: resource is missing the kubectl.kubernetes.io/last-applied-config`.
-This is normal, an `apply` envokes a
+This is normal, an `apply` evokes a
 link:https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/#kubectl-apply["3
 way diff merge"] on the resource. Since the ingress controller was only
 just created on install, there was no "last applied" configuration for

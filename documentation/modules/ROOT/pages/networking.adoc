@@ -7,7 +7,7 @@ SDN. This SDN is based on Open Virtual Network. Moving forward,
 this is the perfered SDN to use on OpenShift, and will be the
 default in future releases. OVNKubernetes is backwards compatable
 with OpenShiftSDN. To read more about OVNKubernetes, please read
-link:https://docs.openshift.com/container-platform/4.9/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes.html[the official documentation].
+link:https://docs.openshift.com/container-platform/4.14/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes.html[the official documentation].
 
 The SDN is used to provide connectivity between application
 components inside of the OpenShift environment. It comes with default network

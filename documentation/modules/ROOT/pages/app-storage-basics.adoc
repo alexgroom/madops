@@ -262,7 +262,7 @@ Now, to verify that persistent storage really works, delete your pod:
 oc delete pods -l deployment=mapit && oc rollout status deployment/mapit
 ----
 
-The `deployment` automatically rollsout a new `pod`:
+The `deployment` automatically rolls out a new `pod`:
 
 [source,bash,role="execute"]
 ----
@@ -282,7 +282,7 @@ OpenShift automatically attached the real, external storage to the right
 place at the right time.
 
 If you needed read-write-many storage, file-based storage solutions can
-provide it. OpenShift Container Storage is a hyperconverged storage solution
+provide it. OpenShift Container Storage is a hyper converged storage solution
 that can run inside OpenShift and provide file, block and even object storage
 by turning locally attached storage devices into storage pools and then
 creating volumes out of them.

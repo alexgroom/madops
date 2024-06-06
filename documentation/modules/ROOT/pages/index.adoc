@@ -15,20 +15,20 @@ Checking the lab environment is running, logging in and setting up the lab prere
 
 == Operational Admin
 
-Hands-on tasks related to operational managment of an OpenShift Cluster. You will be _cluster-admin_
+Hands-on tasks related to operational management of an OpenShift Cluster. You will be _cluster-admin_
 for the day on your own cluster.
 
 *xref:environment.adoc[Operational Admin]*
 
 == Advanced Cluster Management
 
-Explore the cluster lifecycle for mnanaging multiple clusters. Learn about creating, upgrading, and destroying 
+Explore the cluster lifecycle for managing multiple clusters. Learn about creating, upgrading, and destroying 
 and importing clusters in a multi cloud environment.
 
 *xref:acm-multicluster.adoc[ACM]*
 
 == Advanced Cluster Security
 
-Explore using cluster security to detect vulnerabilities and then extend its capabilitities to DevSecOps inside a CI/CD piepline.
+Explore using cluster security to detect vulnerabilities and then extend its capabilities to DevSecOps inside a CI/CD pipeline.
 
 *xref:acs-vulnerability.adoc[ACS]*

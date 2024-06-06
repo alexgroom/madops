@@ -8,7 +8,7 @@ pods?
 
 Having a taint in place will make sure a pod does NOT run on the tainted node.
 
-Some usecases include:
+Some use cases include:
 
 * A node (or a group of nodes) in the cluster is reserved for special purposes
 * Nodes having specialized hardware for specific tasks (like a GPU)
@@ -22,7 +22,7 @@ workloads land.
 == Background
 
 Taints and tolerations work in tandem to ensure that workloads are not
-scheduled onto certian nodes. Once a node is tainted, that node should not
+scheduled onto certain nodes. Once a node is tainted, that node should not
 accept any workload that does not tolerate the taint(s). Tolerations that are
 applied to these workloads will allow (but do not require) the corresponding
 pods to schedule onto nodes with matching taints.
@@ -59,7 +59,7 @@ Now, let's look to see if there are any taints added to these workers.
 oc describe nodes -l 'node-role.kubernetes.io/worker,!node-role.kubernetes.io/infra,!cluster.ocs.openshift.io/openshift-storage' | grep Taint
 ----
 
-There shouldn't be any taints assinged to these workers.
+There shouldn't be any taints assigned to these workers.
 
 === Deploying test application
 
@@ -124,7 +124,7 @@ If the pods are not evenly distributed between nodes, you may have to run
 `oc delete pods --all` to let them rebalance.
 ====
 
-Verify that the pods are spread evenly accross workers. There should be one pod
+Verify that the pods are spread evenly across workers. There should be one pod
 for each node.
 
 [source,bash,role="execute"]
@@ -285,7 +285,7 @@ oc get pods -o=custom-columns=NAME:.metadata.name,NODE:.spec.nodeName
 oc get nodes -l appnode=welcome-php
 ----
 
-To read more about taints and tolerations, you can take a look at the https://docs.openshift.com/container-platform/4.9/nodes/scheduling/nodes-scheduler-taints-tolerations.html[Official Documentation].
+To read more about taints and tolerations, you can take a look at the https://docs.openshift.com/container-platform/4.14/nodes/scheduling/nodes-scheduler-taints-tolerations.html[Official Documentation].
 
 === Clean Up
 

@@ -1,12 +1,12 @@
 = Summary - OpenShift Logging
 In this lab you will explore the logging capabilities of
-OpenShift 4.12. This module will break down all the new logging
-features within 4.12.
+OpenShift 4.14. This module will break down all the new logging
+features.
 
 An extremely important function of OpenShift is collecting and aggregating
 logs from the environments and the application pods it is running. 
 
-The cluster logging components are based upon Vector and Loki. Vector is a high-performance observability data pipeline that allows users to configure "log forwarders" to direct Openshift logs to different log collectors.  Loki is log storage built around the idea of only indexing metadata about your logs with labels (just like Prometheus labels). Log data itself is then compressed and stored in chunks in object stores, or even locally on the filesystem.
+The cluster logging components are based upon Vector and Loki. Vector is a high-performance observability data pipeline that allows users to configure "log forwarders" to direct OpenShift logs to different log collectors.  Loki is log storage built around the idea of only indexing metadata about your logs with labels (just like Prometheus labels). Log data itself is then compressed and stored in chunks in object stores, or even locally on the filesystem.
 
 [NOTE]
 ====
@@ -85,7 +85,7 @@ NAME                STATUS   AGE
 openshift-logging   Active   11s
 ```
 
-=== Install the `Loki` and  `Cluster Logging` Operators in the cluster
+== Install the `Loki` and  `Cluster Logging` Operators in the cluster
 
 In order to install and configure the logging stack into the cluster,
 additional operators need to be installed. we'll cover below how these can be 
@@ -124,7 +124,7 @@ namespace was created from the previous steps
 ====
 
   a. In the OpenShift console, click `Operators` → `OperatorHub`.
-  b. Type `OpenShift Logging` in the search box and click the  `Red Hat OpenShift Logging` card from the list of available Operators (choose the newest version you can see, which should be '5.6.1'), and click `Install`.
+  b. Type `OpenShift Logging` in the search box and click the  `Red Hat OpenShift Logging` card from the list of available Operators (choose the newest version you can see, which should be '5.8'), and click `Install`.
   c. On the `Install Operator` page, *select Update Channel `stable`*. Under `Installation Mode` ensure that `A specific namespace on the cluster` is selected, and choose
      `Operator recommended Namespace: openshift-logging` under `Installed Namespace`. Leave all other defaults
       unchanged and then click `Install`.
@@ -262,7 +262,7 @@ You will know you have been successful when you see this:
 }
 ----
  
-=== Creating a Secret within Openshift
+=== Creating a Secret within OpenShift
   
 Next you need to `configure` your secrets. This `secret` will store the access credentials  
   for the `s3 bucket` we just created. This will later be used by

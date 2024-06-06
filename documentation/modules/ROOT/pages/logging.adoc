@@ -25,7 +25,7 @@ stack will be installed on the `infra` nodes that were created in that lab.
 [NOTE]
 ====
 More information may be found on the official
-link:https://docs.openshift.com/container-platform/4.9/logging/cluster-logging.html[OpenShift
+link:https://docs.openshift.com/container-platform/4.14/logging/cluster-logging.html[OpenShift
 documentation site]
 ====
 
@@ -512,7 +512,7 @@ You can add labels to outbound log messages by using key:value pairs in the pipe
 [NOTE]
 ====
 More information may be found on the official
-link:https://docs.openshift.com/container-platform/4.9/logging/cluster-logging-external.html[OpenShift
+link:https://docs.openshift.com/container-platform/4.14/logging/cluster-logging-external.html[OpenShift
 documentation site]
 ====
 

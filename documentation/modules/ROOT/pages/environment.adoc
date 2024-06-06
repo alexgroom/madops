@@ -13,7 +13,7 @@ following:
 == Conventions
 You will see various code and command blocks throughout these exercises. 
 
-These blocks need to be copied to the terminal and exceuted.
+These blocks need to be copied to the terminal and executed.
 
 === Cluster Admin Authentication
 
