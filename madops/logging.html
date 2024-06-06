@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>OpenShift Log Aggregation :: MAD Ops Track</title>
     <link rel="canonical" href="https://redhat-scholars.github.io/course-template/madops/logging.html">
-    <link rel="prev" href="infra-nodes.html">
-    <link rel="next" href="ldap-groupsync.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -105,8 +103,8 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="infra-nodes.html">Infra Nodes</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="logging.html">Logging</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="logging-with-loki.html">Logging with Loki</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="ldap-groupsync.html">LDAP Sync</a>
@@ -150,9 +148,6 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="acs-devsecops.html">DevSecOps</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#gitops.adoc">GitOps</a>
-  </li>
 </ul>
   </li>
 </ul>
@@ -186,8 +181,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">MAD Ops Track</a></li>
-    <li><a href="environment.html">Operational Admin</a></li>
-    <li><a href="logging.html">Logging</a></li>
+    <li><a href="logging.html">OpenShift Log Aggregation</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/alexgroom/madops/edit/master/documentation/modules/ROOT/pages/logging.adoc">Edit this Page</a></div>
@@ -237,7 +231,7 @@ stack will be installed on the <code>infra</code> nodes that were created in tha
 <td class="content">
 <div class="paragraph">
 <p>More information may be found on the official
-<a href="https://docs.openshift.com/container-platform/4.9/logging/cluster-logging.html">OpenShift
+<a href="https://docs.openshift.com/container-platform/4.14/logging/cluster-logging.html">OpenShift
 documentation site</a></p>
 </div>
 </td>
@@ -975,7 +969,7 @@ Only one <code>ClusterLogForwarder</code> can exist in a cluster, and it combine
 <td class="content">
 <div class="paragraph">
 <p>More information may be found on the official
-<a href="https://docs.openshift.com/container-platform/4.9/logging/cluster-logging-external.html">OpenShift
+<a href="https://docs.openshift.com/container-platform/4.14/logging/cluster-logging-external.html">OpenShift
 documentation site</a></p>
 </div>
 </td>
@@ -1210,10 +1204,6 @@ The Syslog server stores it&#8217;s logs in the <code>/var/log/messages</code> f
 </div>
 </div>
 </div>
-<nav class="pagination">
-  <span class="prev"><a href="infra-nodes.html" class="query-params-link">Infra Nodes</a></span>
-  <span class="next"><a href="ldap-groupsync.html" class="query-params-link">LDAP Sync</a></span>
-</nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>

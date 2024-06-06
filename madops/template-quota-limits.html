@@ -106,7 +106,7 @@
     <a class="nav-link" href="infra-nodes.html">Infra Nodes</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="logging.html">Logging</a>
+    <a class="nav-link" href="logging-with-loki.html">Logging with Loki</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="ldap-groupsync.html">LDAP Sync</a>
@@ -149,9 +149,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="acs-devsecops.html">DevSecOps</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#gitops.adoc">GitOps</a>
   </li>
 </ul>
   </li>
@@ -280,7 +277,7 @@ sets of OpenShift objects with powerful parameterization. They can be used to
 quickly deploy more complicated and related components into OpenShift, and can be a
 useful part of your organization&#8217;s software development lifecycle (SDLC). More
 information can be found in the
-<a href="https://docs.openshift.com/container-platform/4.9/openshift_images/using-templates.html" target="_blank" rel="noopener">template documentation</a>.
+<a href="https://docs.openshift.com/container-platform/4.14/openshift_images/using-templates.html" target="_blank" rel="noopener">template documentation</a>.
 We will not go into detail on <strong>Templates</strong> in this lab.</p>
 </div>
 </td>
@@ -311,7 +308,7 @@ for you already. Use <code>cat</code>, <code>less</code>, or your favorite edito
 <div class="sectionbody">
 <div class="paragraph">
 <p>The
-<a href="https://docs.openshift.com/container-platform/4.9/applications/quotas/quotas-setting-per-project.html" target="_blank" rel="noopener">quota documentation</a>
+<a href="https://docs.openshift.com/container-platform/4.14/applications/quotas/quotas-setting-per-project.html" target="_blank" rel="noopener">quota documentation</a>
 provides a great description of <strong>ResourceQuota</strong>:</p>
 </div>
 <div class="listingblock">
@@ -378,7 +375,7 @@ when we get to the <strong>LimitRange</strong> object.</td>
 </div>
 <div class="paragraph">
 <p>For more details on the available quota options, refer back to the
-<a href="https://docs.openshift.com/container-platform/4.9/applications/quotas/quotas-setting-per-project.html" target="_blank" rel="noopener">quota
+<a href="https://docs.openshift.com/container-platform/4.14/applications/quotas/quotas-setting-per-project.html" target="_blank" rel="noopener">quota
 documentation</a></p>
 </div>
 </div>
@@ -388,7 +385,7 @@ documentation</a></p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The
-<a href="https://docs.openshift.com/container-platform/4.9/nodes/clusters/nodes-cluster-limit-ranges.html" target="_blank" rel="noopener">limit
+<a href="https://docs.openshift.com/container-platform/4.14/nodes/clusters/nodes-cluster-limit-ranges.html" target="_blank" rel="noopener">limit
 range documentation</a> provides some good background:</p>
 </div>
 <div class="listingblock">
@@ -436,7 +433,7 @@ example, setting how much CPU an individual <strong>Pod</strong> or container ca
 <div class="paragraph">
 <p>The difference between requests and
 default limits is important, and is covered in the
-<a href="https://docs.openshift.com/container-platform/4.9/nodes/clusters/nodes-cluster-limit-ranges.html" target="_blank" rel="noopener">limit
+<a href="https://docs.openshift.com/container-platform/4.14/nodes/clusters/nodes-cluster-limit-ranges.html" target="_blank" rel="noopener">limit
 range documentation</a>. But, generally speaking:</p>
 </div>
 <div class="colist arabic">
@@ -464,7 +461,7 @@ nothing is specified</td>
 <div class="paragraph">
 <p>In addition to these topics, there are things like <strong>Quality of Service Tiers</strong>
 as well as a <strong>Limit</strong> to <strong>Request</strong> ratio. There is additionally more information in the
-<a href="https://docs.openshift.com/container-platform/4.9/nodes/clusters/nodes-cluster-limit-ranges.html" target="_blank" rel="noopener">limit
+<a href="https://docs.openshift.com/container-platform/4.14/nodes/clusters/nodes-cluster-limit-ranges.html" target="_blank" rel="noopener">limit
 range documentation</a> section of the documentation.</p>
 </div>
 <div class="paragraph">
@@ -558,7 +555,7 @@ various resources.</p>
 may have access to multiple <strong>Projects</strong>, but quotas and limits do not apply
 directly to <strong>Users</strong>. If you want to apply one quota across multiple <strong>Projects</strong>,
 then you should look at the
-<a href="https://docs.openshift.com/container-platform/4.9/applications/quotas/quotas-setting-across-multiple-projects.html" target="_blank" rel="noopener">multi-project
+<a href="https://docs.openshift.com/container-platform/4.14/applications/quotas/quotas-setting-across-multiple-projects.html" target="_blank" rel="noopener">multi-project
 quota</a> documentation. We will not cover multi-project quota in these exercises.</p>
 </div>
 </td>

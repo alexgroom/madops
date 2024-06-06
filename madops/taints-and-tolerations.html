@@ -106,7 +106,7 @@
     <a class="nav-link" href="infra-nodes.html">Infra Nodes</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="logging.html">Logging</a>
+    <a class="nav-link" href="logging-with-loki.html">Logging with Loki</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="ldap-groupsync.html">LDAP Sync</a>
@@ -149,9 +149,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="acs-devsecops.html">DevSecOps</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#gitops.adoc">GitOps</a>
   </li>
 </ul>
   </li>
@@ -208,7 +205,7 @@ pods?</p>
 <p>Having a taint in place will make sure a pod does NOT run on the tainted node.</p>
 </div>
 <div class="paragraph">
-<p>Some usecases include:</p>
+<p>Some use cases include:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -240,7 +237,7 @@ workloads land.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Taints and tolerations work in tandem to ensure that workloads are not
-scheduled onto certian nodes. Once a node is tainted, that node should not
+scheduled onto certain nodes. Once a node is tainted, that node should not
 accept any workload that does not tolerate the taint(s). Tolerations that are
 applied to these workloads will allow (but do not require) the corresponding
 pods to schedule onto nodes with matching taints.</p>
@@ -291,7 +288,7 @@ worker label set.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>There shouldn&#8217;t be any taints assinged to these workers.</p>
+<p>There shouldn&#8217;t be any taints assigned to these workers.</p>
 </div>
 </div>
 <div class="sect2">
@@ -394,7 +391,7 @@ oc rollout status deploy welcome-php</code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p>Verify that the pods are spread evenly accross workers. There should be one pod
+<p>Verify that the pods are spread evenly across workers. There should be one pod
 for each node.</p>
 </div>
 <div class="listingblock execute">
@@ -610,7 +607,7 @@ oc get nodes -l appnode=welcome-php</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>To read more about taints and tolerations, you can take a look at the <a href="https://docs.openshift.com/container-platform/4.9/nodes/scheduling/nodes-scheduler-taints-tolerations.html">Official Documentation</a>.</p>
+<p>To read more about taints and tolerations, you can take a look at the <a href="https://docs.openshift.com/container-platform/4.14/nodes/scheduling/nodes-scheduler-taints-tolerations.html">Official Documentation</a>.</p>
 </div>
 </div>
 <div class="sect2">

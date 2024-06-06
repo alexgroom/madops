@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Configuring External Authentication Providers :: MAD Ops Track</title>
     <link rel="canonical" href="https://redhat-scholars.github.io/course-template/madops/ldap-groupsync.html">
-    <link rel="prev" href="logging.html">
+    <link rel="prev" href="logging-with-loki.html">
     <link rel="next" href="template-quota-limits.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
@@ -106,7 +106,7 @@
     <a class="nav-link" href="infra-nodes.html">Infra Nodes</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="logging.html">Logging</a>
+    <a class="nav-link" href="logging-with-loki.html">Logging with Loki</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="ldap-groupsync.html">LDAP Sync</a>
@@ -149,9 +149,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="acs-devsecops.html">DevSecOps</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#gitops.adoc">GitOps</a>
   </li>
 </ul>
   </li>
@@ -200,7 +197,7 @@
 <div class="paragraph">
 <p>OpenShift supports a number of different authentication providers, and you can
 find the complete list in the
-<a href="https://docs.openshift.com/container-platform/4.9/authentication/understanding-identity-provider.html">understanding
+<a href="https://docs.openshift.com/container-platform/4.14/authentication/understanding-identity-provider.html">understanding
 identity provider configuration</a>. One of the most commonly used authentication
 providers is LDAP, whether provided by Microsoft Active Directory or by other
 sources.</p>
@@ -401,7 +398,7 @@ able to distinguish between them.</td>
 <td><code>mappingMethod: claim</code>: This section has to do with how usernames are
 assigned within an OpenShift cluster when multiple providers are configured. See
 the
-<a href="https://docs.openshift.com/container-platform/4.9/authentication/understanding-identity-provider.html#identity-provider-parameters_understanding-identity-provider">Identity provider parameters</a> section for more information.</td>
+<a href="https://docs.openshift.com/container-platform/4.14/authentication/understanding-identity-provider.html#identity-provider-parameters_understanding-identity-provider">Identity provider parameters</a> section for more information.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -434,7 +431,7 @@ validating the SSL certificate of the LDAP server.</td>
 <div class="paragraph">
 <p>For more information on the specific details of LDAP authentication in
 OpenShift you can refer to the
-<a href="https://docs.openshift.com/container-platform/4.9/authentication/identity_providers/configuring-ldap-identity-provider.html" target="_blank" rel="noopener">Configuring
+<a href="https://docs.openshift.com/container-platform/4.14/authentication/identity_providers/configuring-ldap-identity-provider.html" target="_blank" rel="noopener">Configuring
 an LDAP identity provider</a> documentation.</p>
 </div>
 <div class="paragraph">
@@ -508,7 +505,7 @@ still get a warning, but that&#8217;s OK.</p>
 </table>
 </div>
 <div class="paragraph">
-<p>This will trigger a redployment of the oAuth Operator. You can monitor the rollout with the following command.</p>
+<p>This will trigger a redeployment of the oAuth Operator. You can monitor the rollout with the following command.</p>
 </div>
 <div class="listingblock execute">
 <div class="content">
@@ -521,7 +518,7 @@ still get a warning, but that&#8217;s OK.</p>
 <div class="paragraph">
 <p>In OpenShift, groups can be used to manage users and control permissions for
 multiple users at once. There is a section in the documentation on how to
-<a href="https://docs.openshift.com/container-platform/4.9/authentication/ldap-syncing.html" target="_blank" rel="noopener">sync
+<a href="https://docs.openshift.com/container-platform/4.14/authentication/ldap-syncing.html" target="_blank" rel="noopener">sync
 groups with LDAP</a>. Syncing groups involves running a program called <code>groupsync</code>
 when logged into OpenShift as a user with <code>cluster-admin</code> privileges, and using
 a configuration file that tells OpenShift what to do with the users it finds in
@@ -695,7 +692,7 @@ For example, they can see the list of all <strong>Projects</strong> in the clust
 <div class="paragraph">
 <p>If you are interested in the different roles that come with OpenShift, you can
 learn more about them in the
-<a href="https://docs.openshift.com/container-platform/4.9/authentication/using-rbac.html" target="_blank" rel="noopener">role-based access control (RBAC)</a> documentation.</p>
+<a href="https://docs.openshift.com/container-platform/4.14/authentication/using-rbac.html" target="_blank" rel="noopener">role-based access control (RBAC)</a> documentation.</p>
 </div>
 </td>
 </tr>
@@ -834,7 +831,7 @@ projects.</p>
 <h3 id="_map_groups_to_projects"><a class="anchor" href="#_map_groups_to_projects"></a>Map Groups to Projects</h3>
 <div class="paragraph">
 <p>As you saw earlier, there are several roles within OpenShift that are
-preconfigured. When it comes to <strong>Projects</strong>, you similarly can grant view, edit,
+pre-configured. When it comes to <strong>Projects</strong>, you similarly can grant view, edit,
 or administrative access. Let&#8217;s give our <code>ose-teamed-app</code> users access to edit the
 development and testing projects:</p>
 </div>
@@ -937,95 +934,10 @@ See 'oc new-app -h' for examples.</pre>
 <div class="paragraph">
 <p>This failure is exactly what we wanted to see.</p>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_prometheus"><a class="anchor" href="#_prometheus"></a>Prometheus</h2>
-<div class="sectionbody">
+<div class="sect3">
+<h4 id="_prometheus"><a class="anchor" href="#_prometheus"></a>Prometheus</h4>
 <div class="paragraph">
-<p>Now that you have a user with <code>cluster-reader</code> privileges (one that can see
-many administrative aspects of the cluster), we can visit Prometheus and
-attempt to log-in to it.</p>
-</div>
-<div class="paragraph">
-<p>Login as a the user with <code>cluster-reader</code> privileges:</p>
-</div>
-<div class="listingblock execute">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc login -u fancyuser1 -p Op#nSh1ft</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Find the <code>prometheus</code> <code>Route</code> with the following command:</p>
-</div>
-<div class="listingblock execute">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get route prometheus-k8s -n openshift-monitoring -o jsonpath='{.spec.host}{"\n"}'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You will see something like the following:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>prometheus-k8s-openshift-monitoring.%ROUTE_SUBDOMAIN%</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The installer configured a <code>Route</code> for Prometheus by default. Go ahead and
-control+click the link:https://prometheus-k8s-openshift-monitoring.{{
-ROUTE_SUBDOMAIN }}[Prometheus link] to open it in your browser. You&#8217;ll be
-greeted with a login screen. Click the <strong>Log in with OpenShift</strong> button, then
-select the <code>ldap</code> auth mechanism, and use the <code>fancyuser1</code> user that you gave
-<code>cluster-reader</code> privileges to earlier.</p>
-</div>
-<div class="paragraph">
-<p>More specifically, the <code>ose-fancy-dev</code> group has <code>cluster-reader</code>
-permissions, and <code>fancyuser1</code> is a member. Remember that the password
-for all of these users is:</p>
-</div>
-<div class="listingblock copypaste">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Op#nSh1ft</code></pre>
-</div>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>You might get a certificate error because of a self-signed certificate
-(depending on how the cluster was installed).  Make sure to accept it.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>After logging in, the first time you will be presented with an auth proxy
-permissions acknowledgement:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/prometheus-auth-proxy.png" alt="prometheus auth proxy">
-</div>
-<div class="title">Figure 1. Auth Proxy Acceptance.</div>
-</div>
-<div class="paragraph">
-<p>There is actually an OAuth proxy that sits in the flow between you and the
-Prometheus container. This proxy is used to validate your AuthenticatioN
-(AuthN) as well as authorize (AuthZ) what is allowed to happen. Here you are
-explicitly authorizing the permissions from your <code>fancyuser1</code> account to be
-used as part of accessing Prometheus. Hit <em>Allow selected permissions</em>.</p>
-</div>
-<div class="paragraph">
-<p>At this point you are viewing Prometheus. There are no alerts configured. If
-you look at <code>Status</code> and then <code>Targets</code> you can see some interesting
-information about the current state of the cluster.</p>
+<p>Users can utilize Prometheus with LDAP integration to enhance authentication and authorization capabilities. By configuring Prometheus to authenticate against an LDAP server, users can ensure secure access to Prometheus with their LDAP credentials. Additionally, LDAP integration allows administrators to define fine-grained access control policies, granting or restricting Prometheus functionalities based on LDAP user groups or attributes. This enables seamless integration of Prometheus into an LDAP-managed environment, providing centralized user management and access control for monitoring and alerting operations.</p>
 </div>
 <div class="paragraph">
 <p>After you are done, make sure to login again as the admin user:</p>
@@ -1037,8 +949,10 @@ information about the current state of the cluster.</p>
 </div>
 </div>
 </div>
+</div>
+</div>
 <nav class="pagination">
-  <span class="prev"><a href="logging.html" class="query-params-link">Logging</a></span>
+  <span class="prev"><a href="logging-with-loki.html" class="query-params-link">Logging with Loki</a></span>
   <span class="next"><a href="template-quota-limits.html" class="query-params-link">Templates Quotas and Limits</a></span>
 </nav>
 </article>

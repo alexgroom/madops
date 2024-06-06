@@ -6,7 +6,7 @@
     <title>OpenShift Infrastructure Nodes :: MAD Ops Track</title>
     <link rel="canonical" href="https://redhat-scholars.github.io/course-template/madops/infra-nodes.html">
     <link rel="prev" href="machinesets.html">
-    <link rel="next" href="logging.html">
+    <link rel="next" href="logging-with-loki.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -106,7 +106,7 @@
     <a class="nav-link" href="infra-nodes.html">Infra Nodes</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="logging.html">Logging</a>
+    <a class="nav-link" href="logging-with-loki.html">Logging with Loki</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="ldap-groupsync.html">LDAP Sync</a>
@@ -149,9 +149,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="acs-devsecops.html">DevSecOps</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#gitops.adoc">GitOps</a>
   </li>
 </ul>
   </li>
@@ -256,7 +253,7 @@ workload until full taint/toleration support is implemented in all operators.</p
 </div>
 <div class="paragraph">
 <p>Taints and tolerations work in tandem to ensure that workloads are not scheduled
-onto certian nodes. They’ll be explored later on.</p>
+onto certain nodes. They’ll be explored later on.</p>
 </div>
 </td>
 </tr>
@@ -736,7 +733,7 @@ infrastructure nodes, we can apply the following configuration:</p>
 <td class="content">
 <div class="paragraph">
 <p>You may see an error that says <code>Warning: resource is missing the kubectl.kubernetes.io/last-applied-config</code>.
-This is normal, an <code>apply</code> envokes a
+This is normal, an <code>apply</code> evokes a
 <a href="https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/#kubectl-apply">"3
 way diff merge"</a> on the resource. Since the ingress controller was only
 just created on install, there was no "last applied" configuration for
@@ -1001,7 +998,7 @@ various monitoring stack components, and you can see them, too:</p>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="machinesets.html" class="query-params-link">Machinesets</a></span>
-  <span class="next"><a href="logging.html" class="query-params-link">Logging</a></span>
+  <span class="next"><a href="logging-with-loki.html" class="query-params-link">Logging with Loki</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Summary - OpenShift Logging :: MAD Ops Track</title>
     <link rel="canonical" href="https://redhat-scholars.github.io/course-template/madops/logging-with-loki.html">
+    <link rel="prev" href="infra-nodes.html">
+    <link rel="next" href="ldap-groupsync.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -103,8 +105,8 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="infra-nodes.html">Infra Nodes</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="logging.html">Logging</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="logging-with-loki.html">Logging with Loki</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="ldap-groupsync.html">LDAP Sync</a>
@@ -148,9 +150,6 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="acs-devsecops.html">DevSecOps</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#gitops.adoc">GitOps</a>
-  </li>
 </ul>
   </li>
 </ul>
@@ -184,7 +183,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">MAD Ops Track</a></li>
-    <li><a href="logging-with-loki.html">Summary - OpenShift Logging</a></li>
+    <li><a href="environment.html">Operational Admin</a></li>
+    <li><a href="logging-with-loki.html">Logging with Loki</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/alexgroom/madops/edit/master/documentation/modules/ROOT/pages/logging-with-loki.adoc">Edit this Page</a></div>
@@ -195,14 +195,14 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>features within 4.12.</p>
+<p>features.</p>
 </div>
 <div class="paragraph">
 <p>An extremely important function of OpenShift is collecting and aggregating
 logs from the environments and the application pods it is running.</p>
 </div>
 <div class="paragraph">
-<p>The cluster logging components are based upon Vector and Loki. Vector is a high-performance observability data pipeline that allows users to configure "log forwarders" to direct Openshift logs to different log collectors.  Loki is log storage built around the idea of only indexing metadata about your logs with labels (just like Prometheus labels). Log data itself is then compressed and stored in chunks in object stores, or even locally on the filesystem.</p>
+<p>The cluster logging components are based upon Vector and Loki. Vector is a high-performance observability data pipeline that allows users to configure "log forwarders" to direct OpenShift logs to different log collectors.  Loki is log storage built around the idea of only indexing metadata about your logs with labels (just like Prometheus labels). Log data itself is then compressed and stored in chunks in object stores, or even locally on the filesystem.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -313,8 +313,11 @@ metadata:
 openshift-logging   Active   11s</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_install_the_loki_and_cluster_logging_operators_in_the_cluster"><a class="anchor" href="#_install_the_loki_and_cluster_logging_operators_in_the_cluster"></a>Install the <code>Loki</code> and  <code>Cluster Logging</code> Operators in the cluster</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_install_the_loki_and_cluster_logging_operators_in_the_cluster"><a class="anchor" href="#_install_the_loki_and_cluster_logging_operators_in_the_cluster"></a>Install the <code>Loki</code> and  <code>Cluster Logging</code> Operators in the cluster</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>In order to install and configure the logging stack into the cluster,
 additional operators need to be installed. we&#8217;ll cover below how these can be
@@ -372,7 +375,7 @@ namespace was created from the previous steps</p>
 <p>In the OpenShift console, click <code>Operators</code> → <code>OperatorHub</code>.</p>
 </li>
 <li>
-<p>Type <code>OpenShift Logging</code> in the search box and click the  <code>Red Hat OpenShift Logging</code> card from the list of available Operators (choose the newest version you can see, which should be '5.6.1'), and click <code>Install</code>.</p>
+<p>Type <code>OpenShift Logging</code> in the search box and click the  <code>Red Hat OpenShift Logging</code> card from the list of available Operators (choose the newest version you can see, which should be '5.8'), and click <code>Install</code>.</p>
 </li>
 <li>
 <p>On the <code>Install Operator</code> page, <strong>select Update Channel <code>stable</code></strong>. Under <code>Installation Mode</code> ensure that <code>A specific namespace on the cluster</code> is selected, and choose
@@ -460,7 +463,6 @@ Subscriptions</code> and <code>Install Plans</code> tabs for any failure or erro
 </div>
 </li>
 </ol>
-</div>
 </div>
 <div class="sect2">
 <h3 id="_configuring_a_bucket_with_aws"><a class="anchor" href="#_configuring_a_bucket_with_aws"></a>Configuring a bucket with AWS</h3>
@@ -599,7 +601,7 @@ name and try again.</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_creating_a_secret_within_openshift"><a class="anchor" href="#_creating_a_secret_within_openshift"></a>Creating a Secret within Openshift</h3>
+<h3 id="_creating_a_secret_within_openshift"><a class="anchor" href="#_creating_a_secret_within_openshift"></a>Creating a Secret within OpenShift</h3>
 <div class="paragraph">
 <p>Next you need to <code>configure</code> your secrets. This <code>secret</code> will store the access credentials
   for the <code>s3 bucket</code> we just created. This will later be used by
@@ -976,6 +978,10 @@ spec:
 </div>
 </div>
 </div>
+<nav class="pagination">
+  <span class="prev"><a href="infra-nodes.html" class="query-params-link">Infra Nodes</a></span>
+  <span class="next"><a href="ldap-groupsync.html" class="query-params-link">LDAP Sync</a></span>
+</nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
